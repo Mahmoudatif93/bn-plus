@@ -54,6 +54,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>@lang('site.name')</th>
+                                <th>@lang('site.kind')</th>
                                 <th>@lang('site.image')</th>
                             
                                 <th>@lang('site.action')</th>
@@ -65,6 +66,14 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $category->name }}</td>
+                                    <td>
+                                    @if($category->kind==1)
+                                    @lang('site.local')
+                                    @elseif($category->kind==2)
+                                    @lang('site.national')
+                                    @endif
+
+                                    </td>
                                     
                                     <td><img src="{{ asset('uploads/company/'.$category->company_image) }}" style="width: 100px"  class="img-thumbnail" alt=""></td>
 

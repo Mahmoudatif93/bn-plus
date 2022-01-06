@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    protected $fillable = ['name', 'company_image'];
+    protected $fillable = ['name', 'company_image','kind'];
 
 
     public function cards()

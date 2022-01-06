@@ -33,6 +33,7 @@ class CompanyController extends Controller
     {
         $rules = [
             'name' => 'required',
+            'kind'=>'required',
         ];
         
         $request->validate($rules);

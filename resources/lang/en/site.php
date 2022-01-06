@@ -20,7 +20,9 @@ return [
     'confirm_delete' => ' confirm delete',
     'yes' => 'yes',
     'no' => 'no',
-
+    'kind'=>'Kind',
+    'local'=>'local',
+    'national'=>'national',
     'login' => 'Login',
     'remember_me' => 'Remember me',
     'password' => ' password',

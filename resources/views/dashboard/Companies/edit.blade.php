@@ -32,6 +32,25 @@
                         {{ csrf_field() }}
                         {{ method_field('put') }}
 
+                        <div class="form-group">
+                            <label>@lang('site.kind')</label>
+                            <select name="kind" class="form-control">
+                                <option value="">@lang('site.kind')</option>
+                                @if($category->kind==1)
+                            <option value="1" selected>@lang('site.local')</option>
+                            <option value="2">@lang('site.national')</option>
+                            @elseif($category->kind==2)
+                            <option value="1" >@lang('site.local')</option>
+                            <option value="2"selected>@lang('site.national')</option>
+                            @else
+                            <option value="1" >@lang('site.local')</option>
+                            <option value="2">@lang('site.national')</option>
+                            @endif
+                               
+                            </select>
+                        </div>
+
+
                             <div class="form-group">
                                 <label>@lang('site.name')</label>
                                 <input type="text" name="name" class="form-control" value="{{ $category->name }}">

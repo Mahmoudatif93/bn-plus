@@ -62,7 +62,9 @@ return [
     'category' => 'القسم',
     'show_products' => 'عرض المنتجات',
     'created_at' => 'تم اضافته',
-
+    'kind'=>'النوع',
+    'local'=>'محلي',
+    'national'=>'دولي',
     'products' => 'المنتجات',
     'product' => 'المنتج',
     'quantity' => 'الكميه',
