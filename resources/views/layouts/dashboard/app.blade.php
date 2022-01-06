@@ -92,7 +92,7 @@
         <a href="{{ route('dashboard.index') }}" class="logo">
             {{--<!-- mini logo for sidebar mini 50x50 pixels -->--}}
             <span class="logo-mini"><b>A</b>LT</span>
-            <span class="logo-lg"><b>Admin</b>Panel</span>
+            <span class="logo-lg"><b>BN plus Admin</b>Panel</span>
         </a>
 
         <nav class="navbar navbar-static-top">
