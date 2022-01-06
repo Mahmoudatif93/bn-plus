@@ -16,7 +16,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             Route::get('offer/{id}', 'CardsController@offer')->name('offer');
             Route::get('notoffer/{id}', 'CardsController@notoffer')->name('notoffer');
             Route::post('importcard', 'CardsController@import')->name('importcard');
-            Route::get('compcard/{id}','CardsController@compcard')->name('compcard');
+            Route::any('Cards/compcard/{id}','CardsController@cmpanies')->name('Cards/compcard');
 
 
             //client routes

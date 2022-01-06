@@ -36,6 +36,23 @@ class CardsController extends Controller
 
     public function store(Request $request)
     {
+
+
+        if($request->nationalcompany=="national"){
+            
+        //   dd($request);
+            $rules = [
+                'company_id' => 'required',
+              
+            ];
+           // $request_national = $request->all();
+            $request_national['nationalcompany']=1;
+            $request_national['company_id']= $request->company_id;
+            Cards::create($request_national);
+
+        }else{
+
+        
         if ( $request->hasFile('file')) {
          $allcarcode=array();
             $cardcode = Excel::toArray(new CardImport, request()->file('file')); 
@@ -131,7 +148,7 @@ class CardsController extends Controller
         }
         
     
-
+    }
           
      
         session()->flash('success', __('site.added_successfully'));
@@ -239,11 +256,11 @@ class CardsController extends Controller
     }
 
 
-    public function compcard($id)
+    public function cmpanies($id)
     {
-        $cities = DB::table("cards")
-                    ->where("company_id",$id)
-                    ->first("card_price","id");
+        $cities = DB::table("companies")
+                    ->where("kind",$id)
+                    ->get();
         return json_encode($cities);
     }
 

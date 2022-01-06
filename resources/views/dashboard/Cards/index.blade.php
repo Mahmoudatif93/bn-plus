@@ -56,6 +56,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>@lang('site.Companies')</th>
+                                <th>@lang('site.kind')</th>
                                 <th>@lang('site.price')</th>
                                 <th>@lang('site.card_code')</th>
                                 <th>@lang('site.avaliable')</th>
@@ -71,6 +72,15 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $category->company->name }}</td>
+                                    <td>
+                                    @if($category->nationalcompany==0)
+                                    @lang('site.local')
+                                    @elseif($category->nationalcompany==1)
+                                    @lang('site.national')
+                                    @endif
+
+                                    </td>
+
                                     <td>{{ $category->card_price }}</td>
                                     <td>{{ $category->card_code }}</td>
                                     

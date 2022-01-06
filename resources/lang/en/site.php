@@ -15,6 +15,8 @@ return [
     'loading' => 'Loading',
     'print' => 'print',
     'manual'=>'Manual',
+    'notnationalcompany'=>'not national company',
+    'nationalcompany'=>'national company',
     'automatic'=>'Automatic',
 'importcard'=>'Import Card Code',
     'confirm_delete' => ' confirm delete',

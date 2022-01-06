@@ -17,6 +17,8 @@ return [
     'importcard'=>'اضافه كود الكارت',
     'confirm_delete' => 'تاكيد الحذف',
     'yes' => 'نعم',
+    'notnationalcompany'=>'ليس شركه دوليه',
+    'nationalcompany'=>'شركه دوليه',
     'no' => 'لا',
     'manual'=>'يدوي',
     'automatic'=>'أوتوماتيك',
