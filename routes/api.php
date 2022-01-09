@@ -25,8 +25,8 @@ Route::middleware('jwtAuth')->group(function() {
     Route::resource('posts','postController');
 });
 
-
-
+Route::resource('companies','CompanyController');
+Route::resource('cards','CardController');
 
 Route::post('login','AuthController@login');
 //Route::middleware('jwt.auth')->post('login', 'API/AuthController@login');

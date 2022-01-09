@@ -75,7 +75,7 @@
 
                                     </td>
                                     
-                                    <td><img src="{{ asset('uploads/company/'.$category->company_image) }}" style="width: 100px"  class="img-thumbnail" alt=""></td>
+                                    <td><img src="{{ asset('uploads/'.$category->company_image) }}" style="width: 100px"  class="img-thumbnail" alt=""></td>
 
 
 
