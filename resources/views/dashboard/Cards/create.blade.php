@@ -49,7 +49,7 @@
                     </select>
             </div>--}}
 
-            <div class="form-group col-6"> <label>@lang('site.Companies')</label>
+            <div class="form-group col-6" id="companies"> <label>@lang('site.Companies')</label>
                 <select name="company_id" id="company_id" class="form-control">
                     <option value="">@lang('site.Companies')</option>
 
@@ -149,7 +149,7 @@
 
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</button>
+            <button type="submit" id="submit" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</button>
         </div>
 
         </form><!-- end of form -->
@@ -205,9 +205,14 @@
         if (document.getElementById("nationalcompany").checked == true) {
 
             document.getElementById("notnationaldiv").style.display = "none";
+              document.getElementById("companies").style.display = "none";
+              document.getElementById("submit").disabled = true;
+
 
         } else {
             document.getElementById("notnationaldiv").style.display = "block";
+                document.getElementById("companies").style.display = "block";
+              document.getElementById("submit").disabled = false;
 
 
         }
@@ -236,9 +241,13 @@
                         });
                         if (kind == 2) {
                             document.getElementById("nationalcheck").style.display = "block";
+                            
+                            
 
                         } else {
                             document.getElementById("nationalcheck").style.display = "none";
+                          
+
 
                         }
 
