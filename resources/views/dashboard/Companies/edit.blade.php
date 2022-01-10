@@ -37,14 +37,14 @@
                             <select name="kind" class="form-control">
                                 <option value="">@lang('site.kind')</option>
                                 @if($category->kind=="local")
-                            <option value="1" selected>@lang('site.local')</option>
-                            <option value="2">@lang('site.national')</option>
+                            <option value="local" selected>@lang('site.local')</option>
+                            <option value="national">@lang('site.national')</option>
                             @elseif($category->kind=="national")
-                            <option value="1" >@lang('site.local')</option>
-                            <option value="2"selected>@lang('site.national')</option>
+                            <option value="local" >@lang('site.local')</option>
+                            <option value="national"selected>@lang('site.national')</option>
                             @else
-                            <option value="1" >@lang('site.local')</option>
-                            <option value="2">@lang('site.national')</option>
+                            <option value="local" >@lang('site.local')</option>
+                            <option value="national">@lang('site.national')</option>
                             @endif
                                
                             </select>
