@@ -60,7 +60,7 @@
                                 <th>@lang('site.price')</th>
                                 <th>@lang('site.card_code')</th>
                                 <th>@lang('site.avaliable')</th>
-                                <th>@lang('site.offer')</th>
+                               <!-- <th>@lang('site.offer')</th>-->
                                 <th>@lang('site.image')</th>
                             
                                 <th>@lang('site.action')</th>
@@ -93,7 +93,7 @@
                                         @endif
                                         </td>
 
-                                    <td>
+                                   {{-- <td>
                
               
 
@@ -108,7 +108,7 @@
 
 
                                     @endif
-                                    </td>
+                                    </td>--}}
                                     <td><img src="{{ asset('uploads/'.$category->card_image) }}" style="width: 100px"  class="img-thumbnail" alt=""></td>
 
 

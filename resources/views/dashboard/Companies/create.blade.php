@@ -32,8 +32,8 @@
                         <div class="form-group col-6"> <label>@lang('site.kind')</label>
                         <select name="kind" id="kind" class="form-control">
                             <option value="">@lang('site.kind')</option>
-                            <option value="1">@lang('site.local')</option>
-                            <option value="2">@lang('site.national')</option>
+                            <option value="local">@lang('site.local')</option>
+                            <option value="national">@lang('site.national')</option>
                             
                         </select>
                     </div>

@@ -20,6 +20,12 @@ class CompanyController extends Controller
         return $this->apiResponse($companies,200);
     }
 
+    public function companycards()
+    {
+        $companies=Company::with('cards')->get();
+        return $this->apiResponse($companies,200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

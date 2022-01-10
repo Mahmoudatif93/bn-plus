@@ -15,7 +15,7 @@ class CreateCompaniesTable extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('kind');
+            $table->string('kind');
             $table->string('name');
             $table->string('company_image')->default('default.png');
             $table->timestamps();

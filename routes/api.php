@@ -26,7 +26,13 @@ Route::middleware('jwtAuth')->group(function() {
 });
 
 Route::resource('companies','CompanyController');
+Route::get('companycards','CompanyController@companycards');
+
 Route::resource('cards','CardController');
+Route::get('localcards','CardController@localcards');
+Route::get('nationalcards','CardController@nationalcards');
+Route::post('cardsbycompany','CardController@cardsbycompany');
+
 
 Route::post('login','AuthController@login');
 //Route::middleware('jwt.auth')->post('login', 'API/AuthController@login');

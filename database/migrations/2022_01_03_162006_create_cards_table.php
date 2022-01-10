@@ -18,8 +18,7 @@ class CreateCardsTable extends Migration
             $table->integer('company_id')->unsigned();
             $table->double('card_price')->default(0);
             $table->string('card_code')->default(0);
-            $table->integer('amounts')->default(0);
-            $table->integer('offer')->default(0);
+
             $table->integer('avaliable')->default(0);
             $table->integer('nationalcompany')->default(0);
             

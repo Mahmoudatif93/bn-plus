@@ -33,8 +33,8 @@
                     <div class="form-group col-6"> <label>@lang('site.kind')</label>
                         <select name="kind" id="kind" class="form-control">
                             <option value="">@lang('site.kind')</option>
-                            <option value="1">@lang('site.local')</option>
-                            <option value="2">@lang('site.national')</option>
+                            <option value="local">@lang('site.local')</option>
+                            <option value="national">@lang('site.national')</option>
 
                         </select>
                     </div>
@@ -65,7 +65,7 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio"  value="notnational" name="nationalcompany" id="notnationalcompany" checked onclick="nationalcompanyfun()">
+                    <input class="form-check-input" type="radio"  value="local" name="nationalcompany" id="notnationalcompany" checked onclick="nationalcompanyfun()">
                     <label class="form-check-label" for="flexRadioDefault2">
                         @lang('site.notnationalcompany')
                     </label>
@@ -239,7 +239,7 @@
 
 
                         });
-                        if (kind == 2) {
+                        if (kind == "national") {
                             document.getElementById("nationalcheck").style.display = "block";
                             
                             

@@ -16,9 +16,28 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards=Cards::with('company')->get();
+        $cards=Cards::with('company')->distinct('card_price')->get()->unique('card_price');
         return $this->apiResponse($cards,200);
     }
+
+    public function localcards()
+    {
+        $cards=Cards::where('nationalcompany',0)->with('company')->get()->unique('card_price');
+        return $this->apiResponse($cards,200);
+    }
+
+    public function nationalcards()
+    {
+        $cards=Cards::where('nationalcompany',1)->with('company')->get()->unique('card_price');
+        return $this->apiResponse($cards,200);
+    }
+    public function cardsbycompany(Request $request)
+    {
+        $cards=Cards::where('company_id', $request->company_id)->with('company')->get()->unique('card_price');
+        return $this->apiResponse($cards,200);
+    }
+
+    
 
     /**
      * Store a newly created resource in storage.

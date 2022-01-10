@@ -67,9 +67,9 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td>
-                                    @if($category->kind==1)
+                                    @if($category->kind=="local")
                                     @lang('site.local')
-                                    @elseif($category->kind==2)
+                                    @elseif($category->kind=="national")
                                     @lang('site.national')
                                     @endif
 

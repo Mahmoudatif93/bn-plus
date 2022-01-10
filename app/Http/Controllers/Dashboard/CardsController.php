@@ -40,7 +40,7 @@ class CardsController extends Controller
 
         if($request->nationalcompany=="national"){
             
-        //   dd($request);
+         dd($request);
             $rules = [
                 'company_id' => 'required',
               
@@ -125,12 +125,12 @@ class CardsController extends Controller
           
             for($i=0;$i<count($request->card_code);$i++){
                 $request_data['card_code'] = $request->card_code[$i];
-            if($request->offer=="on"){
+        /*    if($request->offer=="on"){
                 $request_data['offer']=1;
             }else{
                 $request_data['offer']=0;
             }
-    
+    */
             if ($request->card_image) {
     
                 Image::make($request->card_image)
@@ -178,11 +178,11 @@ class CardsController extends Controller
     {
         $Companies = Company::all();
         $category=Cards::where('id',$id)->first();
-        if($category->offer ==1 ){
+      /*  if($category->offer ==1 ){
             $checked="checked";}else{
                 $checked=""; 
-            }
-        return view('dashboard.Cards.edit', compact('category','Companies','checked'));
+            }*/
+        return view('dashboard.Cards.edit', compact('category','Companies'));
 
     }//end of edit
 
@@ -193,11 +193,11 @@ class CardsController extends Controller
 
         $request_data = $request->except(['_token', '_method']);
         
-        if($request->offer=="on"){
+      /*  if($request->offer=="on"){
             $request_data['offer']=1;
         }else{
             $request_data['offer']=0;
-        }
+        }*/
         if ($request->card_image) {
 
             if ($category->card_image != '') {
