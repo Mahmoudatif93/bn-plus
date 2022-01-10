@@ -22,13 +22,13 @@ class CardController extends Controller
 
     public function localcards()
     {
-        $cards=Cards::where('nationalcompany',0)->with('company')->get()->unique('card_price');
+        $cards=Cards::where('nationalcompany','local')->with('company')->get()->unique('card_price');
         return $this->apiResponse($cards,200);
     }
 
     public function nationalcards()
     {
-        $cards=Cards::where('nationalcompany',1)->with('company')->get()->unique('card_price');
+        $cards=Cards::where('nationalcompany','national')->with('company')->get()->unique('card_price');
         return $this->apiResponse($cards,200);
     }
     public function cardsbycompany(Request $request)
