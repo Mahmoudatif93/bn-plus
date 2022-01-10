@@ -59,13 +59,13 @@
 
             <div id="nationalcheck" style="display: none;">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" value="national" name="nationalcompany" id="nationalcompany"  onclick="nationalcompanyfun()">
+                    <input class="form-check-input" type="radio" value="InternationalAPI" name="nationalcompany" id="nationalcompany"  onclick="nationalcompanyfun()">
                     <label class="form-check-label" for="flexRadioDefault2">
                         @lang('site.nationalcompany')
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio"  value="local" name="nationalcompany" id="notnationalcompany" checked onclick="nationalcompanyfun()">
+                    <input class="form-check-input" type="radio"  value="national" name="nationalcompany" id="notnationalcompany" checked onclick="nationalcompanyfun()">
                     <label class="form-check-label" for="flexRadioDefault2">
                         @lang('site.notnationalcompany')
                     </label>

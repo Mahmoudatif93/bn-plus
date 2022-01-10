@@ -22,7 +22,7 @@ class CardsController extends Controller
 
         })->latest()->paginate(5);
         $Companies = Company::all();
-     
+    // dd($Cards);
         return view('dashboard.Cards.index', compact('Cards','Companies'));
 
     }//end of index
@@ -38,29 +38,28 @@ class CardsController extends Controller
     {
 
 
-        if($request->nationalcompany=="national"){
+        if($request->nationalcompany=="InternationalAPI"){
             
-         dd($request);
+      
             $rules = [
                 'company_id' => 'required',
               
             ];
            // $request_national = $request->all();
-            $request_national['nationalcompany']=1;
+            $request_national['nationalcompany']='InternationalAPI';
             $request_national['company_id']= $request->company_id;
             Cards::create($request_national);
 
         }else{
+           
+         
 
+          
         
         if ( $request->hasFile('file')) {
          $allcarcode=array();
             $cardcode = Excel::toArray(new CardImport, request()->file('file')); 
-          
-              
-              //  array_push($cardcode, $data);
-              //  dd(count($cardcode[0]));
-//dd($data[0][0]);
+      
                 $rules = [
                     'company_id' => 'required',
                     'card_price' => 'required',
@@ -70,7 +69,7 @@ class CardsController extends Controller
                 
                 $request->validate($rules);
                 $request_data = $request->all();
-              
+       
                 for($i=0;$i<count($cardcode);$i++){
                  //   echo $i;
                    // echo"<br>";
@@ -122,7 +121,18 @@ class CardsController extends Controller
             
             $request->validate($rules);
             $request_data = $request->all();
-          
+            if($request->kind=="national" && $request->nationalcompany=="national"){
+                   
+                $request_data['nationalcompany']='national';
+           
+           
+    
+            }else{
+             
+                $request_data['nationalcompany']='local';
+               
+            }
+       
             for($i=0;$i<count($request->card_code);$i++){
                 $request_data['card_code'] = $request->card_code[$i];
         /*    if($request->offer=="on"){

@@ -20,7 +20,7 @@ class CreateCardsTable extends Migration
             $table->string('card_code')->default(0);
 
             $table->integer('avaliable')->default(0);
-            $table->integer('nationalcompany')->default(0);
+            $table->string('nationalcompany')->default('local');
             
             $table->string('card_image')->default('default.png');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

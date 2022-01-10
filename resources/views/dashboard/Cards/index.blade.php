@@ -73,9 +73,9 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $category->company->name }}</td>
                                     <td>
-                                    @if($category->nationalcompany==0)
+                                    @if($category->nationalcompany=='local')
                                     @lang('site.local')
-                                    @elseif($category->nationalcompany==1)
+                                    @elseif($category->nationalcompany=='national')
                                     @lang('site.national')
                                     @endif
 
