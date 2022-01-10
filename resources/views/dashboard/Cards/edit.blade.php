@@ -52,11 +52,11 @@
                                 <label>@lang('site.card_code')</label>
                                 <input type="text" name="card_code" class="form-control" value="{{ $category->card_code }}">
                             </div>
-                            <div class="form-group">
+                         {{--   <div class="form-group">
                                 <label>@lang('site.amounts')</label>
                                 <input type="number" name="amounts" class="form-control" value="{{ $category->amounts }}">
                             </div>
-
+--}}
                             <div class="form-group">
                             <label for="images">@lang('site.image')</label>
                             <div class="input-group">
@@ -69,14 +69,14 @@
 
                         </div>
                         
-                        <div class="form-group col-6">
+                     <!--   <div class="form-group col-6">
                                 <label>@lang('site.offer')</label>
                                
-                                <input class="form-check-input" name="offer" type="checkbox" {{$checked}} >
+                                <input class="form-check-input" name="offer" type="checkbox" {{--$checked--}} >
 
                             </div>
 
-
+-->
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-edit"></i> @lang('site.edit')</button>
                         </div>
