@@ -16,10 +16,12 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('card_id')->unsigned();
-            $table->integer('order_number');
-            $table->double('total_price', 8, 2)->nullable();
+            $table->integer('order_number')->default(0);
+            $table->integer('transaction_id')->default(0);
+            $table->double('card_price', 8, 2)->nullable();
             $table->string('client_name');
             $table->string('client_number');
+            $table->string('paid')->default('false');
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->timestamps();

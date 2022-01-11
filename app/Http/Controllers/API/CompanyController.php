@@ -20,9 +20,18 @@ class CompanyController extends Controller
         return $this->apiResponse($companies,200);
     }
 
-    public function companycards()
+    public function allcompanies(Request $request)
     {
-        $companies=Company::with('cards')->get();
+        if(isset($request->kind)){
+            $companies=Company::where('kind',$request->kind)->get();
+        }
+        else if($request->name){
+            $companies=Company::where('name',$request->name)->get();
+        }
+        else{
+            $companies=Company::all();
+        }
+        
         return $this->apiResponse($companies,200);
     }
 

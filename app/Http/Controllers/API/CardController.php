@@ -31,13 +31,49 @@ class CardController extends Controller
         $cards=Cards::where('nationalcompany','national')->with('company')->get()->unique('card_price');
         return $this->apiResponse($cards,200);
     }
+
+
     public function cardsbycompany(Request $request)
     {
-        $cards=Cards::where('company_id', $request->company_id)->with('company')->get()->unique('card_price');
+        if(isset($request->company_id)){
+            $cards=Cards::where('company_id', $request->company_id)->with('company')->get()->unique('card_price');
+
+        }
+
+       else if(isset($request->kind)){
+            $cards=Cards::where('nationalcompany', $request->kind)->with('company')->get()->unique('card_price');
+
+        }
+        else if(isset($request->name )){
+            $companies=Company::where('name',$request->name)->get();
+            foreach( $companies as $row){
+                $cards=Cards::where('company_id', $row->id)->with('company')->get()->unique('card_price');
+            }
+        }
+            else{
+                $cards=Cards::with('company')->distinct('card_price')->get()->unique('card_price');
+            }
+        
+    
+        
         return $this->apiResponse($cards,200);
     }
 
-    
+
+
+     public function cardscount(Request $request)
+    {
+      
+            $cards=Cards::where('card_price', $request->card_price)->count();
+
+        if($cards >0){
+            $message="Cards Avaliable ";
+        }else{
+            $message="No Cards Avaliable For this Price";
+        }
+
+        return $this->apiResponse2($cards,$message,200);
+    }
 
     /**
      * Store a newly created resource in storage.

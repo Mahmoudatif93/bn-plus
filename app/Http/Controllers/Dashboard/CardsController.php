@@ -22,7 +22,7 @@ class CardsController extends Controller
 
         })->latest()->paginate(5);
         $Companies = Company::all();
-    // dd($Cards);
+    //dd($Cards);
         return view('dashboard.Cards.index', compact('Cards','Companies'));
 
     }//end of index
