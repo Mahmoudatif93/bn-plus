@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('client_name');
             $table->string('client_number');
             $table->string('paid')->default('false');
-            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
+            $table->foreign('card_id')->references('id')->on('cards');
 
             $table->timestamps();
         });
