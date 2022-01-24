@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('card_id')->unsigned();
-            $table->integer('order_number')->default(0);
+            $table->integer('client_id')->default(0);
             $table->integer('transaction_id')->default(0);
             $table->double('card_price', 8, 2)->nullable();
             $table->string('client_name');

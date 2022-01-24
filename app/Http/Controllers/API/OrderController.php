@@ -23,7 +23,7 @@ class OrderController extends Controller
       
             $order=new Order();
             $order->card_id=$request->card_id;
-            $order->order_number=$request->order_number;
+            $order->client_id=$request->client_id;
             $order->card_price=$request->card_price;
             $order->client_name=$request->client_name;
             $order->client_number=$request->client_number;
@@ -48,6 +48,8 @@ class OrderController extends Controller
         $order->paid=$request->paid;
     //  dd($request->title);
         if($order->update()){
+
+            Cards:: where('id', $order->card_id)->delete();
             return response()->json(['status'=>'success']);
         }else{
             return response()->json(['status'=>'error']);
