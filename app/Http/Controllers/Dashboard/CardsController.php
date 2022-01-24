@@ -12,10 +12,31 @@ use Illuminate\Support\Facades\Storage;
 use App\Imports\CardImport;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
+
+use App\Order;
+use App\Carbon\Carbon;
 class CardsController extends Controller
 {
     public function index(Request $request)
     {
+    //  $allorders=Cards::where('id',1)->update(array('avaliable'=>1));
+        $cards=Cards::all();
+      /*  $allorders=Order::all();
+       
+        if(!empty($allorders)){
+         foreach($allorders as $row){
+             
+             $is_expired = $row->created_at->addMinutes(10);
+             if($is_expired < \Carbon\Carbon::now()){
+
+
+         Cards::where('id',$row->card_id)->update(array('avaliable'=>0));
+               
+          
+             }
+         }
+        }*/
+        dd($cards);
         $Cards = Cards::when($request->search, function ($q) use ($request) {
 
             return $q->where('card_code', '%' . $request->search . '%');
