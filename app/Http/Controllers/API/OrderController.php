@@ -31,7 +31,7 @@ class OrderController extends Controller
            
             if($order->save()){
                // return response()->json(['status'=>'success']);
-               $data['avaliable']=1;
+               $dataa['avaliable']=1;
                Cards:: where('id', $order->card_id)->update($dataa);
                return $this->apiResponse3($order->id,200);
             }else{
