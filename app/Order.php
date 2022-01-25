@@ -10,7 +10,7 @@ class Order extends Model
 
     public function cards()
     {
-        return $this->belongsTo(Cards::class);
+        return $this->belongsTo(Cards::class,'card_id','id');
 
     }//end of cards
 
