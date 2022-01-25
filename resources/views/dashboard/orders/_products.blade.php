@@ -2,21 +2,29 @@
     <table class="table table-hover table-bordered">
 
         <thead>
-        <tr>
-            <th>@lang('site.card_code')</th>
-            <th>@lang('site.price')</th>
-        
-        </tr>
+            <tr>
+                <th>@lang('site.card_code')</th>
+                <th>@lang('site.price')</th>
+                <th>@lang('site.status')</th>
+
+            </tr>
         </thead>
 
         <tbody>
-       {{-- @foreach ($products as $product)--}}
+            {{-- @foreach ($products as $product)--}}
             <tr>
                 <td>{{ $products->card_code }}</td>
                 <td>{{ $products->card_price}}</td>
-               
+
+                <td>
+                    @if($order->paid=="false")
+                    {{'Not Complete'}}
+                    @else
+                    {{' Completed'}}
+                    @endif
+                </td>
             </tr>
-      {{--  @endforeach--}}
+            {{-- @endforeach--}}
         </tbody>
     </table>
     <h3>@lang('site.total') <span>{{ number_format($order->card_price, 2) }}</span></h3>
