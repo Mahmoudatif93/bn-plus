@@ -5,7 +5,7 @@
             <tr>
             <th>@lang('site.client_name')</th>
             <th>@lang('site.phone')</th>
-            <th>@lang('site.address')</th>
+         
                 <th>@lang('site.card_code')</th>
                 <th>@lang('site.price')</th>
                
@@ -20,7 +20,7 @@
             $order->client
             <td>{{  $order->client->name }}</td>
             <td>{{  $order->client->phone }}</td>
-            <td>{{  $order->client->address }}</td>
+           
                 <td>{{ $products->card_code }}</td>
                 <td>{{ $products->card_price}}</td>
                 
