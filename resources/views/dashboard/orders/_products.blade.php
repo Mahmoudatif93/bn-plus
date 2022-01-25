@@ -10,16 +10,16 @@
         </thead>
 
         <tbody>
-        @foreach ($order as $product)
+       {{-- @foreach ($products as $product)--}}
             <tr>
-                <td>{{ $product->cards[0]->card_code }}</td>
-                <td>{{ $product->cards[0]->card_price}}</td>
+                <td>{{ $product->card_code }}</td>
+                <td>{{ $product->card_price}}</td>
                
             </tr>
-        @endforeach
+      {{--  @endforeach--}}
         </tbody>
     </table>
-    <h3>@lang('site.total') <span>{{ number_format($order->total_price, 2) }}</span></h3>
+    <h3>@lang('site.total') <span>{{ number_format($order->card_price, 2) }}</span></h3>
 
 </div>
 
