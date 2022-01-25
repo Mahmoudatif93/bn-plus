@@ -20,10 +20,10 @@ class CardsController extends Controller
     public function index(Request $request)
     {
     //  $allorders=Cards::where('id',1)->update(array('avaliable'=>1));
-        $cards=Cards::all();
-      /*  $allorders=Order::all();
-       
-        if(!empty($allorders)){
+       // $cards=Cards::all();
+       // $allorders=Order::all()->unique('card_id');
+        //dd($allorders);
+        /*if(!empty($allorders)){
          foreach($allorders as $row){
              
              $is_expired = $row->created_at->addMinutes(10);
