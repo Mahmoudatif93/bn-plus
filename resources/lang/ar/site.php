@@ -8,6 +8,7 @@ return [
     'create' => 'اضافه',
     'read' => 'عرض',
     'edit' => 'تعديل',
+    'Printorders'=>'طباعه الطلبات',
     'update' => 'تعديل',
     'delete' => 'حذف',
     'search' => 'بحث',

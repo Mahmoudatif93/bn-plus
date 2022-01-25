@@ -136,7 +136,7 @@
                     <div class="box box-primary">
 
                         <div class="box-header">
-                            <h3 class="box-title" style="margin-bottom: 10px">@lang('site.show_products')</h3>
+                            <h3 class="box-title" style="margin-bottom: 10px">@lang('site.Printorders')</h3>
                         </div><!-- end of box header -->
 
                         <div class="box-body">

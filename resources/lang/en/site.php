@@ -15,6 +15,7 @@ return [
     'loading' => 'Loading',
     'print' => 'print',
     'manual'=>'Manual',
+    'Printorders'=>'Print Orders',
     'notnationalcompany'=>'From Dashboard',
     'nationalcompany'=>'From International API ',
     'automatic'=>'Automatic',
