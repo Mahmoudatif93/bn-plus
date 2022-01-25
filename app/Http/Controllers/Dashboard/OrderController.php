@@ -12,7 +12,8 @@ class OrderController extends Controller
     {
         $orders = Order::whereHas('client', function ($q) use ($request) {
 
-            return $q->where('name', 'like', '%' . $request->search . '%');
+            return $q->where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('card_price', 'like', '%' . $request->search . '%');
 
         })->paginate(5);
 
