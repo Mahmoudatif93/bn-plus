@@ -17,7 +17,7 @@
         <tbody>
             {{-- @foreach ($products as $product)--}}
             <tr>
-            $order->client
+     
             <td>{{  $order->client->name }}</td>
             <td>{{  $order->client->phone }}</td>
            
