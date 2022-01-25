@@ -67,7 +67,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $client->name }}</td>
                                     <td>{{ $client->phone }}</td>
-                                  >
+                                 
                                     <td>{{ $client->address }}</td>
                                     {{-- <td>
                                         @if (auth()->user()->hasPermission('create_orders'))
@@ -77,11 +77,11 @@
                                         @endif
                                     </td>--}}
                                     <td>
-                                        @if (auth()->user()->hasPermission('update_clients'))
+                                    {{--   @if (auth()->user()->hasPermission('update_clients'))
                                             <a href="{{ route('dashboard.clients.edit', $client->id) }}" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> @lang('site.edit')</a>
                                         @else
                                             <a href="#" class="btn btn-info btn-sm disabled"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                        @endif
+                                        @endif--}}
                                         @if (auth()->user()->hasPermission('delete_clients'))
                                             <form action="{{ route('dashboard.clients.destroy', $client->id) }}" method="post" style="display: inline-block">
                                                 {{ csrf_field() }}
