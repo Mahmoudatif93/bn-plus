@@ -54,6 +54,7 @@
                                     <tr>
                                         <th>@lang('site.client_name')</th>
                                         <th>@lang('site.price')</th>
+                                        <th>@lang('site.card_code')</th>
                                        <th>@lang('site.status')</th>
                                         <th>@lang('site.created_at')</th>
                                         <th>@lang('site.action')</th>
@@ -63,6 +64,7 @@
                                         <tr>
                                             <td>{{ $order->client->name }}</td>
                                             <td>{{ number_format($order->card_price, 2) }}</td>
+                                            <td>{{ $order->card_code }}</td>
                                             <td>
                                                 @if($order->paid=="false")
                                                 {{'Not Complete'}}
