@@ -15,7 +15,7 @@ class OrderController extends Controller
             return $q->where('name', 'like', '%' . $request->search . '%');
 
         })->paginate(5);
-
+dd($orders);
         return view('dashboard.orders.index', compact('orders'));
 
     }//end of index
