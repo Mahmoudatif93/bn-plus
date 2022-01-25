@@ -54,7 +54,7 @@
                                     <tr>
                                         <th>@lang('site.client_name')</th>
                                         <th>@lang('site.price')</th>
-{{--                                        <th>@lang('site.status')</th>--}}
+                                       <th>@lang('site.status')</th>
                                         <th>@lang('site.created_at')</th>
                                         <th>@lang('site.action')</th>
                                     </tr>
@@ -62,8 +62,13 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <td>{{ $order->client->name }}</td>
-                                            <td>{{ number_format($order->total_price, 2) }}</td>
-                                            {{--<td>--}}
+                                            <td>{{ number_format($order->card_price, 2) }}</td>
+                                            <td>
+                                                @if($order->paid=="false")
+                                                {{'Not Complete'}}
+                                                @else
+                                                {{' Completed'}}
+                                                @endif
                                                 {{--<button--}}
                                                     {{--data-status="@lang('site.' . $order->status)"--}}
                                                     {{--data-url="{{ route('dashboard.orders.update_status', $order->id) }}"--}}
@@ -73,7 +78,7 @@
                                                 {{-->--}}
                                                     {{--@lang('site.' . $order->status)--}}
                                                 {{--</button>--}}
-                                            {{--</td>--}}
+                                           </td>
                                             <td>{{ $order->created_at->toFormattedDateString() }}</td>
                                             <td>
                                                 <button class="btn btn-primary btn-sm order-products"
