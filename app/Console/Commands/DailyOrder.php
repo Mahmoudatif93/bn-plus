@@ -43,8 +43,8 @@ class DailyOrder extends Command
         $allorders=Order::all();
         if(!empty($allorders)){
             foreach($allorders as $row){
-                
-                $is_expired = $row->created_at->addMinutes(10);
+                ///last order
+                $is_expired = $row->created_at->addMinutes(5);
                 if($is_expired < \Carbon\Carbon::now()){
    
    
