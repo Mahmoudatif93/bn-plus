@@ -12,8 +12,8 @@
         <tbody>
        {{-- @foreach ($products as $product)--}}
             <tr>
-                <td>{{ $product->card_code }}</td>
-                <td>{{ $product->card_price}}</td>
+                <td>{{ $products->card_code }}</td>
+                <td>{{ $products->card_price}}</td>
                
             </tr>
       {{--  @endforeach--}}
