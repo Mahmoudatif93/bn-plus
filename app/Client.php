@@ -20,11 +20,13 @@ class Client extends Model
 
     }//end of get name attribute
 
-    public function orders()
+  /*  public function orders()
     {
         return $this->hasMany(Order::class);
 
     }//end of orders
+*/
+    
 
 
 }//end of model

@@ -14,4 +14,10 @@ class Order extends Model
 
     }//end of cards
 
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+
+    }//end of cards
+
 }
