@@ -30,14 +30,14 @@
                                 <input type="text" name="search" class="form-control" placeholder="@lang('site.search')" value="{{ request()->search }}">
                             </div>
 
-                           {{-- <div class="col-md-4">
+                         <div class="col-md-4">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> @lang('site.search')</button>
-                                @if (auth()->user()->hasPermission('create_clients'))
+                                {{--     @if (auth()->user()->hasPermission('create_clients'))
                                     <a href="{{ route('dashboard.clients.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> @lang('site.add')</a>
                                 @else
                                     <a href="#" class="btn btn-primary disabled"><i class="fa fa-plus"></i> @lang('site.add')</a>
-                                @endif
-                            </div> --}}
+                                @endif --}}
+                            </div>
 
                         </div>
                     </form><!-- end of form -->
