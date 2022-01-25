@@ -66,7 +66,8 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $client->name }}</td>
-                                    <td>{{  $client->phone }} </td>
+                                    <td>{{ $client->phone }}</td>
+                                  >
                                     <td>{{ $client->address }}</td>
                                     {{-- <td>
                                         @if (auth()->user()->hasPermission('create_orders'))

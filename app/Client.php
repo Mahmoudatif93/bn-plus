@@ -10,9 +10,7 @@ class Client extends Model
 
     protected $fillable = ['name', 'phone','address','email'];
 
-    protected $casts = [
-        'phone' => 'array'
-    ];
+ 
 
     public function getNameAttribute($value)
     {
