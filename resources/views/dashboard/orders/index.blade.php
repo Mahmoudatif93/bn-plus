@@ -64,7 +64,7 @@
                                         <tr>
                                             <td>{{ $order->client->name }}</td>
                                             <td>{{ number_format($order->card_price, 2) }}</td>
-                                            <td>{{ $order->card_code }}</td>
+                                            <td>{{ $order->cards->card_code }}</td>
                                             <td>
                                                 @if($order->paid=="false")
                                                 {{'Not Complete'}}

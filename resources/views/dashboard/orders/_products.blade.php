@@ -5,7 +5,7 @@
             <tr>
                 <th>@lang('site.card_code')</th>
                 <th>@lang('site.price')</th>
-                <th>@lang('site.card_code')</th>
+               
                 <th>@lang('site.status')</th>
 
             </tr>
@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ $products->card_code }}</td>
                 <td>{{ $products->card_price}}</td>
-                <td>{{ $order->card_code }}</td>
+                
 
                 <td>
                     @if($order->paid=="false")
