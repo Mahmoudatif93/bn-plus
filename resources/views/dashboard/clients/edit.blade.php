@@ -33,13 +33,16 @@
                             <label>@lang('site.name')</label>
                             <input type="text" name="name" class="form-control" value="{{ $client->name }}">
                         </div>
-
-                        @for ($i = 0; $i < 2; $i++)
+                        <div class="form-group">
+                                <label>@lang('site.phone')</label>
+                                <input type="text" name="phone" class="form-control" value="{{ $client->phone }}">
+                            </div>
+                       {{-- @for ($i = 0; $i < 2; $i++)
                             <div class="form-group">
                                 <label>@lang('site.phone')</label>
                                 <input type="text" name="phone[]" class="form-control" value="{{ $client->phone[$i] ?? '' }}">
                             </div>
-                        @endfor
+                        @endfor--}}
 
                         <div class="form-group">
                             <label>@lang('site.address')</label>
