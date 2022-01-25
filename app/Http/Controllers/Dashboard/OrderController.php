@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function products(Order $order)
     {
         $products = $order->cards;
-        dd($products);
+       // dd($products);
         return view('dashboard.orders._products', compact('order', 'products'));
 
     }//end of products

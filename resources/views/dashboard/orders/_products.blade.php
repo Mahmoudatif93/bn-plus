@@ -10,7 +10,7 @@
         </thead>
 
         <tbody>
-        @foreach ($products as $product)
+        @foreach ($order as $product)
             <tr>
                 <td>{{ $product->cards[0]->card_code }}</td>
                 <td>{{ $product->cards[0]->card_price}}</td>
