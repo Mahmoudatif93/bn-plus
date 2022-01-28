@@ -51,7 +51,8 @@ class CardController extends Controller
             }
         }
             else{
-                $cards=Cards::where(array('avaliable'=>0))->with('company')->distinct('card_price')->get()->unique('card_price');
+                
+              $cards=Cards::where(array('avaliable'=>0))->with('company')->distinct('card_price')->groupBy('card_price')->get();
             }
         
     
