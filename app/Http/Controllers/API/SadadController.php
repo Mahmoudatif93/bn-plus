@@ -33,7 +33,7 @@ class SadadController extends Controller
             'amount'=>$request->amount
         ]);
         
-        return $response ;
+        return $response['error']->status;
        // dd($response );
     }
 
