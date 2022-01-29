@@ -64,6 +64,7 @@ class CardsController extends Controller
       
             $rules = [
                 'company_id' => 'required',
+                
               
             ];
            // $request_national = $request->all();
@@ -84,6 +85,7 @@ class CardsController extends Controller
                 $rules = [
                     'company_id' => 'required',
                     'card_price' => 'required',
+                    'card_name' => 'required',
                   //  'card_code' => 'required',
                     //'amounts' => 'required',
                 ];
@@ -137,7 +139,7 @@ class CardsController extends Controller
                 'company_id' => 'required',
                 'card_price' => 'required',
                 'card_code' => 'required',
-                //'amounts' => 'required',
+                'card_name' => 'required',
             ];
             
             $request->validate($rules);

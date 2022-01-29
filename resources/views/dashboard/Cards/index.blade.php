@@ -55,12 +55,14 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                               
                                 <th>@lang('site.Companies')</th>
+                                <th>@lang('site.name')</th>
                                 <th>@lang('site.kind')</th>
                                 <th>@lang('site.price')</th>
                                 <th>@lang('site.card_code')</th>
                                 <th>@lang('site.avaliable')</th>
-                               <!-- <th>@lang('site.offer')</th>-->
+                                
                                 <th>@lang('site.image')</th>
                             
                                 <th>@lang('site.action')</th>
@@ -71,7 +73,9 @@
                             @foreach ($Cards as $index=>$category)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
+                                    
                                     <td>{{ $category->company->name }}</td>
+                                    <td>{{ $category->card_name }}</td>
                                     <td>
                                     @if($category->nationalcompany=='local')
                                     @lang('site.local')

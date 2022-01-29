@@ -30,6 +30,17 @@
                     {{ method_field('post') }}
 
 
+
+                 
+                            <div class="form-group col-6">
+                                <label>@lang('site.name')</label>
+                                <input type="text" name="card_name" class="form-control ">
+                            </div>
+
+
+                    
+
+
                     <div class="form-group col-6"> <label>@lang('site.kind')</label>
                         <select name="kind" id="kind" class="form-control">
                             <option value="">@lang('site.kind')</option>

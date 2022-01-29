@@ -8,7 +8,7 @@ class Cards extends Model
 {
     
 
-    protected $fillable = ['company_id', 'card_price','card_code','amounts','offer','avaliable','card_image','nationalcompany'];
+    protected $fillable = ['card_name','company_id', 'card_price','card_code','amounts','offer','avaliable','card_image','nationalcompany'];
 
     public function orders()
     {

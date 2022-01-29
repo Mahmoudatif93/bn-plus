@@ -34,6 +34,12 @@
 
 
                         <div class="form-group">
+                                <label>@lang('site.name')</label>
+                                <input type="text" name="card_name" class="form-control "  value="{{ $category->card_name }}">
+                            </div>
+
+
+                        <div class="form-group">
                             <label>@lang('site.Companies')</label>
                             <select name="company_id" class="form-control">
                                 <option value="">@lang('site.Companies')</option>
