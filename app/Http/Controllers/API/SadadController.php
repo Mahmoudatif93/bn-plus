@@ -34,6 +34,7 @@ class SadadController extends Controller
         ]);
         
         if(isset($response['error'])){
+            return 'error';
             return $response['error'];
         }else{
             return 0;
