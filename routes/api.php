@@ -38,6 +38,7 @@ Route::post('cardscount','CardController@cardscount');
 Route::post('reserveorder','OrderController@reserveorder');
 Route::post('finalorder','OrderController@finalorder');
 //////////////////////
+Route::post('verify','SadadController@verify');
 
 Route::post('login','AuthController@login');
 //Route::middleware('jwt.auth')->post('login', 'API/AuthController@login');
