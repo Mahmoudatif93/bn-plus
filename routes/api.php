@@ -37,8 +37,11 @@ Route::post('cardsbycompany','CardController@cardsbycompany');
 Route::post('cardscount','CardController@cardscount');
 Route::post('reserveorder','OrderController@reserveorder');
 Route::post('finalorder','OrderController@finalorder');
-//////////////////////
+//////////////////////Sadad API 
 Route::post('verify','SadadController@verify');
+Route::post('confirm','SadadController@confirm');
+//////////////////////////
+
 
 Route::post('login','AuthController@login');
 //Route::middleware('jwt.auth')->post('login', 'API/AuthController@login');

@@ -33,7 +33,24 @@ class SadadController extends Controller
             'amount'=>$request->amount
         ]);
 
+       // dd($response );
+    }
+
+
+    public function confirm(Request $request)
+    {
+        $response = Http::post('https://api.sandbox.plutus.ly/api/v1/transaction/sadadapi/confirm', [
+            'process_id' => $request->process_id,
+            'code' => $request->code,
+            'amount'=>$request->amount,
+            'invoice_no'=>$request->invoice_no,
+            'customer_ip'=>$request->customer_ip,
+        ]);
+
         dd($response );
     }
+
+
+
 
 }
