@@ -32,7 +32,7 @@ class SadadController extends Controller
             'birth_year' => $request->birth_year,
             'amount'=>$request->amount
         ]);
-        return $response ;
+        return $response->error ;
        // dd($response );
     }
 
