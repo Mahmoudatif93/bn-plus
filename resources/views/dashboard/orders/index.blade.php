@@ -62,9 +62,9 @@
 
                                     @foreach ($orders as $order)
                                         <tr>
-                                            <td>{{ $order->client->name }}</td>
+                                            <td> @if(!empty($order->client)) {{ $order->client->name }} @endif</td>
                                             <td>{{ number_format($order->card_price, 2) }}</td>
-                                            <td>{{ $order->cards->card_code }}</td>
+                                            <td>@if(!empty($order->cards)) {{ $order->cards->card_code }}  @endif</td>
                                             <td>
                                                 @if($order->paid=="false")
                                                 {{'Not Complete'}}
