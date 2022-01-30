@@ -84,10 +84,10 @@ class SadadController extends Controller
             'customer_ip' => $request->customer_ip,
 
         ]);
-        return $response;
+        
         if (isset($response['error'])) {
-
-            return $this->apiResponse3('', 'faild to complete order', 404);
+            return $response;
+          //  return $this->apiResponse3('', 'faild to complete order', 404);
         } else {
             $id = $request->order_id;
             $order = Order::find($id);
