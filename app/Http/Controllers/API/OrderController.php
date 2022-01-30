@@ -36,7 +36,7 @@ class OrderController extends Controller
                return $this->apiResponse3($order->id,200);
             }else{
               //  return response()->json(['status'=>'error']);
-              return $this->apiResponse3('','erro to stor post',404);
+              return $this->apiResponse3('','error to Reserve Order',404);
             }
 
         
