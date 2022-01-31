@@ -44,7 +44,7 @@ class SadadController extends Controller
 
         if (isset($response['error'])) {
             // return 'error';
-            return $this->apiResponse('',$response['error']['message'],$response['error']['message']);
+            return $this->apiResponse4(false,$response['error']['message'],$response['error']['code']);
 
         } else {
 
@@ -61,8 +61,8 @@ class SadadController extends Controller
             $dataa['avaliable'] = 1;
             Cards::where('id', $order->card_id)->update($dataa);
 
-
-            return $response + $order->id;
+            return $this->apiResponse5(true,$response['message'],$response['status'],$response['result'],$order->id);
+            //return $response + $order->id;
         }
 
         // dd($response );
@@ -88,7 +88,7 @@ class SadadController extends Controller
         
         if (isset($response['error'])) {
            // return $response;
-           return $this->apiResponse('',$response['error']['message'],$response['error']['message']);
+           return $this->apiResponse4(false,$response['error']['message'],$response['error']['message']);
         } else {
             $id = $request->order_id;
             $order = Order::find($id);
@@ -99,7 +99,7 @@ class SadadController extends Controller
                 if ($order->update()) {
 
                     Cards::where('id', $order->card_id)->delete();
-                    return $response;
+                    return $this->apiResponse5(true,$response['message'],$response['status'],$response['result']);
                   //  return response()->json(['status' => 'success']);
                 } else {
                     return response()->json(['status' => 'error']);

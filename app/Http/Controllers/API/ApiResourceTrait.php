@@ -31,7 +31,29 @@ namespace App\Http\Controllers\API;
             return response($array,$code);
         }
 
+        public function apiResponse4($success=false,$error=null,$code=200){
+            $array=[
+                'success'=>$success,
+                'status'=>$code==200 ? true:false,
+                'message' =>$error,
+            ];
+            return response($array,$code);
+        }
+
+        public function apiResponse5($success=false,$error=null,$code=200,$result=null,$orderid=null){
+            $array=[
+                'success'=>$success,
+                'status'=>$code==200 ? true:false,
+                'message' =>$error,
+                'result'=>$result,
+                'orderid'=>$orderid,
+            ];
+            return response($array,$code);
+        }
+
     }
 
+
+    
 
 ?>
