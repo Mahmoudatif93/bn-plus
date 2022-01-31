@@ -48,12 +48,6 @@ class SadadController extends Controller
                 // return $response['error'];
 
 
-
-                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
-            } else {
-
-
-
                 $request_data['card_id'] = $order->id;
                 $request_data['client_id'] = $request->client_id;
                 $request_data['card_price'] = $request->amount;
@@ -64,6 +58,12 @@ class SadadController extends Controller
                 $order->save();
                 $dataa['avaliable'] = 1;
                 Cards::where('id', $order->id)->update($dataa);
+                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
+            } else {
+
+
+
+      
 
                 return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
                 //return $response + $order->id;
