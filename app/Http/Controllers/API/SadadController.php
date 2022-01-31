@@ -43,8 +43,8 @@ class SadadController extends Controller
 
 
         if (isset($response['error'])) {
-             return $response['error'];
-            return $this->apiResponse4(false,$response['error']['message'],$response['error']['code']);
+            // return $response['error'];
+            return $this->apiResponse4(false,$response['error']['message'],$response['error']['status']);
 
         } else {
 
@@ -88,7 +88,7 @@ class SadadController extends Controller
         
         if (isset($response['error'])) {
            // return $response;
-           return $this->apiResponse4(false,$response['error']['message'],$response['error']['message']);
+           return $this->apiResponse4(false,$response['error']['message'],$response['error']['status']);
         } else {
             $id = $request->order_id;
             $order = Order::find($id);
