@@ -47,24 +47,12 @@ class SadadController extends Controller
             if (isset($response['error'])) {
                 // return $response['error'];
 
-                $request_data['card_id'] = $card->id;
-                $request_data['client_id'] = $request->client_id;
-                $request_data['card_price'] = $request->amount;
-                $request_data['client_name'] = $request->client_name;
-                $request_data['client_number'] = $request->client_number;
-                $order= Order::create($request_data);
+             
 
-              //  $order->save();
-                $dataa['avaliable'] = 1;
-                Cards::where('id', $order->card_id)->update($dataa);
-
-               // return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
-
-                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status'], $order->id);
+                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
             } else {
 
 
-
                 $request_data['card_id'] = $card->id;
                 $request_data['client_id'] = $request->client_id;
                 $request_data['card_price'] = $request->amount;
@@ -72,12 +60,12 @@ class SadadController extends Controller
                 $request_data['client_number'] = $request->client_number;
                 $order= Order::create($request_data);
 
-              //  $order->save();
                 $dataa['avaliable'] = 1;
-                Cards::where('id', $order->id)->update($dataa);
+                Cards::where('id', $order->card_id)->update($dataa);
 
-                return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
-                //return $response + $order->id;
+               return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
+               
+             
             }
         } else {
             return $this->apiResponse4(false, 'No Avaliable Cards for this price', 400);
