@@ -107,7 +107,8 @@ class SadadController extends Controller
             if ($order->update()) {
 
                 Cards::where('id', $order->card_id)->delete();
-                return $this->apiResponse5(true, $response['message'], $response['status']);
+                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
+
             } else {
                 return response()->json(['status' => 'error']);
             }
