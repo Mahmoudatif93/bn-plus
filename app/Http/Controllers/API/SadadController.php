@@ -58,9 +58,9 @@ class SadadController extends Controller
                 $dataa['avaliable'] = 1;
                 Cards::where('id', $order->card_id)->update($dataa);
 
-                return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
+               // return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
 
-                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
+                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status'], $order->id);
             } else {
 
 
