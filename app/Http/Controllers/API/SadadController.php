@@ -106,7 +106,7 @@ class SadadController extends Controller
 
                     Cards::where('id', $order->card_id)->delete();
                     return $this->apiResponse5(true, $response['message'], $response['status'], $response['result']);
-                    //  return response()->json(['status' => 'success']);
+                  
                 } else {
                     return response()->json(['status' => 'error']);
                 }
