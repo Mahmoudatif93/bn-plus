@@ -43,7 +43,7 @@ class SadadController extends Controller
 
 
         if (isset($response['error'])) {
-            // return 'error';
+             return $response['error']['code'];
             return $this->apiResponse4(false,$response['error']['message'],$response['error']['code']);
 
         } else {
