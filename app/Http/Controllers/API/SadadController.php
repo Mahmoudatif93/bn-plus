@@ -101,7 +101,7 @@ class SadadController extends Controller
         $id = $request->order_id;
         $order = Order::find($id);
         if (!empty($order)) {
-            $order->transaction_id = $response['result']['transaction_id'];
+            $order->transaction_id = 1;//$response['result']['transaction_id'];
             $order->paid = $request->paid;
 
             if ($order->update()) {
