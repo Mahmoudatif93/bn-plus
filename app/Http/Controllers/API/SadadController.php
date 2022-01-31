@@ -44,15 +44,20 @@ class SadadController extends Controller
 
         if (isset($response['error'])) {
             // return $response['error'];
+            $order = Order::where('card_price',$request->amount)->order_by('id','desc')->first();
+            return $order;
+
             return $this->apiResponse4(false,$response['error']['message'],$response['error']['status']);
 
         } else {
 
 
-            $order = new Order();
+          //  $order = new Order();
+            $order = Order::where('card_price',$request->amount)->order_by()->first();
+return $order;
             $order->card_id = $request->card_id;
             $order->client_id = $request->client_id;
-            $order->card_price = $request->card_price;
+            $order->card_price = $request->amount;
             $order->client_name = $request->client_name;
             $order->client_number = $request->client_number;
 
