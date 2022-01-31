@@ -53,10 +53,10 @@ class SadadController extends Controller
                 $request_data['client_name'] = $request->client_name;
                 $request_data['client_number'] = $request->client_number;
                 $order= Order::create($request_data);
-return($order);
+
               //  $order->save();
                 $dataa['avaliable'] = 1;
-                Cards::where('id', $order->id)->update($dataa);
+                Cards::where('id', $order->card_id)->update($dataa);
 
                 return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
 
