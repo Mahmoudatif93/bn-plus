@@ -46,7 +46,7 @@ class SadadController extends Controller
 
             if (isset($response['error'])) {
                 // return $response['error'];
-
+                $request_data = $card;
                 $request_data['card_id'] = $card->id;
                 $request_data['client_id'] = $request->client_id;
                 $request_data['card_price'] = $request->amount;
