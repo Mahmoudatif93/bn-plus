@@ -44,7 +44,7 @@ class SadadController extends Controller
 
         if (isset($response['error'])) {
             // return $response['error'];
-            $order = Order::where('card_price',$request->amount)->order_by('id','desc')->first();
+            $order = Cards::where(array('avaliable'=>0,'card_price'=>$request->amount))->orderBy('id','desc')->first();
             return $order;
 
             return $this->apiResponse4(false,$response['error']['message'],$response['error']['status']);
