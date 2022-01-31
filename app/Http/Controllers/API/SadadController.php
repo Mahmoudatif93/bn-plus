@@ -41,33 +41,35 @@ class SadadController extends Controller
             'amount' => $request->amount
         ]);
 
+        $order = Cards::where(array('avaliable' => 0, 'card_price' => $request->amount))->orderBy('id', 'desc')->first();
+        if (!empty($order)) {
 
-        if (isset($response['error'])) {
-            // return $response['error'];
-            $order = Cards::where(array('avaliable'=>0,'card_price'=>$request->amount))->orderBy('id','desc')->first();
-            return $order;
+            if (isset($response['error'])) {
+                // return $response['error'];
 
-            return $this->apiResponse4(false,$response['error']['message'],$response['error']['status']);
 
+
+                return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
+            } else {
+
+
+
+                $request_data['card_id'] = $order->id;
+                $request_data['client_id'] = $request->client_id;
+                $request_data['card_price'] = $request->amount;
+                $request_data['client_name'] = $request->client_name;
+                $request_data['client_number'] = $request->client_number;
+                Order::create($request_data);
+
+                $order->save();
+                $dataa['avaliable'] = 1;
+                Cards::where('id', $order->id)->update($dataa);
+
+                return $this->apiResponse5(true, $response['message'], $response['status'], $response['result'], $order->id);
+                //return $response + $order->id;
+            }
         } else {
-
-
-          //  $order = new Order();
-            $order = Order::where('card_price',$request->amount)->order_by()->first();
-return $order;
-            $order->card_id = $request->card_id;
-            $order->client_id = $request->client_id;
-            $order->card_price = $request->amount;
-            $order->client_name = $request->client_name;
-            $order->client_number = $request->client_number;
-
-
-            $order->save();
-            $dataa['avaliable'] = 1;
-            Cards::where('id', $order->card_id)->update($dataa);
-
-            return $this->apiResponse5(true,$response['message'],$response['status'],$response['result'],$order->id);
-            //return $response + $order->id;
+            return $this->apiResponse4(false, 'No Avaliable Cards for this price', 400);
         }
 
         // dd($response );
@@ -90,22 +92,22 @@ return $order;
             'customer_ip' => $request->customer_ip,
 
         ]);
-        
+
         if (isset($response['error'])) {
-           // return $response;
-           return $this->apiResponse4(false,$response['error']['message'],$response['error']['status']);
+            // return $response;
+            return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
         } else {
             $id = $request->order_id;
             $order = Order::find($id);
             if (!empty($order)) {
-                $order->transaction_id =$response['result']['transaction_id'];
+                $order->transaction_id = $response['result']['transaction_id'];
                 $order->paid = $request->paid;
-            
+
                 if ($order->update()) {
 
                     Cards::where('id', $order->card_id)->delete();
-                    return $this->apiResponse5(true,$response['message'],$response['status'],$response['result']);
-                  //  return response()->json(['status' => 'success']);
+                    return $this->apiResponse5(true, $response['message'], $response['status'], $response['result']);
+                    //  return response()->json(['status' => 'success']);
                 } else {
                     return response()->json(['status' => 'error']);
                 }
