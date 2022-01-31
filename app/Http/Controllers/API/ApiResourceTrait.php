@@ -34,7 +34,7 @@ namespace App\Http\Controllers\API;
         public function apiResponse4($success=false,$error=null,$code=null){
             $array=[
                 'success'=>$success,
-                'status'=>$code,
+                'code'=>$code,
                 'message' =>$error,
             ];
             return response($array,$code);
@@ -43,7 +43,7 @@ namespace App\Http\Controllers\API;
         public function apiResponse5($success=false,$error=null,$code=null,$result=null,$orderid=null){
             $array=[
                 'success'=>$success,
-                'status'=>$code,
+                'code'=>$code,
                 'message' =>$error,
                 'result'=>$result,
                 'orderid'=>$orderid,
