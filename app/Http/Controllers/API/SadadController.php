@@ -46,14 +46,14 @@ class SadadController extends Controller
 
             if (isset($response['error'])) {
                 // return $response['error'];
-                $request_data = $card;
+
                 $request_data['card_id'] = $card->id;
                 $request_data['client_id'] = $request->client_id;
                 $request_data['card_price'] = $request->amount;
                 $request_data['client_name'] = $request->client_name;
                 $request_data['client_number'] = $request->client_number;
                 $order= Order::create($request_data);
-
+return($order);
               //  $order->save();
                 $dataa['avaliable'] = 1;
                 Cards::where('id', $order->id)->update($dataa);
