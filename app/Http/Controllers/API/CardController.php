@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Company;
 use App\Cards;
+
 class CardController extends Controller
 {
     use ApiResourceTrait;
@@ -16,77 +17,113 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards=Cards::where(array('avaliable'=>0))->with('company')->distinct('card_price')->get()->unique('card_price');
-        return $this->apiResponse($cards,200);
+        $cards = Cards::where(array('avaliable' => 0))->with('company')->distinct('card_price')->get()->unique('card_price');
+        return $this->apiResponse($cards, 200);
     }
 
     public function localcards(Request $request)
     {
-        if(isset($request->company_id)){
-            $cards=Cards::where(array('nationalcompany'=>'local','avaliable'=>0,'company_id'=>$request->company_id))->with('company')->get()->unique('card_price');
-
-        }else{
-            $cards=Cards::where(array('nationalcompany'=>'local','avaliable'=>0))->with('company')->get()->unique('card_price');
-
+        if (isset($request->company_id)) {
+            $cards = Cards::where(array('nationalcompany' => 'local', 'avaliable' => 0, 'company_id' => $request->company_id))->with('company')->get()->unique('card_price');
+        } else {
+            $cards = Cards::where(array('nationalcompany' => 'local', 'avaliable' => 0))->with('company')->get()->unique('card_price');
         }
-        return $this->apiResponse($cards,200);
+        return $this->apiResponse($cards, 200);
     }
 
     public function nationalcards(Request $request)
     {
-        if(isset($request->company_id)){
-            $cards=Cards::where(array('nationalcompany'=>'national','avaliable'=>0,'company_id'=>$request->company_id))->with('company')->get()->unique('card_price');
 
-        }
-        else{
-            $cards=Cards::where(array('nationalcompany'=>'national','avaliable'=>0))->with('company')->get()->unique('card_price');
 
+
+        /////////////dubi national api
+        $balancenational = Http::withHeaders([
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ])->post('https://taxes.like4app.com/online/check_balance/', [
+            'deviceId' => '111',
+            'email' => 'c',
+            'password' => 'c',
+            'securityCode' => 'c',
+            'langId' => 1,
+        ]);
+
+        if ($balancenational->balance > 0) {
+
+            if (isset($request->company_id)) {
+                $nationalApicrds = Http::withHeaders([
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ])->post('https://taxes.like4app.com/online/products', [
+                    'deviceId' => '111',
+                    'email' => 'c',
+                    'password' => 'c',
+                    'securityCode' => 'c',
+                    'langId' => 1,
+                    'categoryId' => $request->company_id
+                ]);
+            } else {
+                $nationalApicrds = Http::withHeaders([
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ])->post('https://taxes.like4app.com/online/products', [
+                    'deviceId' => '111',
+                    'email' => 'c',
+                    'password' => 'c',
+                    'securityCode' => 'c',
+                    'langId' => 1,
+
+                ]);
+            }
+
+            return $nationalApicrds;
         }
-        return $this->apiResponse($cards,200);
+        ////////////////end//////////////
+        else {
+
+            if (isset($request->company_id)) {
+                $cards = Cards::where(array('nationalcompany' => 'national', 'avaliable' => 0, 'company_id' => $request->company_id))->with('company')->get()->unique('card_price');
+                return $this->apiResponse($cards, 200);
+            } else {
+                $cards = Cards::where(array('nationalcompany' => 'national', 'avaliable' => 0))->with('company')->get()->unique('card_price');
+                return $this->apiResponse($cards, 200);
+            }
+        }
     }
 
 
     public function cardsbycompany(Request $request)
     {
-        if(isset($request->company_id)){
-            $cards=Cards::where(array('company_id'=>$request->company_id,'avaliable'=>0))->with('company')->get()->unique('card_price');
-
-        }
-
-       else if(isset($request->kind)){
-            $cards=Cards::where(array('nationalcompany'=> $request->kind,'avaliable'=>0))->with('company')->get()->unique('card_price');
-
-        }
-        else if(isset($request->name )){
-            $companies=Company::where('name',$request->name)->get();
-            foreach( $companies as $row){
-                $cards=Cards::where(array('company_id'=> $row->id,'avaliable'=>0))->with('company')->get()->unique('card_price');
+        if (isset($request->company_id)) {
+            $cards = Cards::where(array('company_id' => $request->company_id, 'avaliable' => 0))->with('company')->get()->unique('card_price');
+        } else if (isset($request->kind)) {
+            $cards = Cards::where(array('nationalcompany' => $request->kind, 'avaliable' => 0))->with('company')->get()->unique('card_price');
+        } else if (isset($request->name)) {
+            $companies = Company::where('name', $request->name)->get();
+            foreach ($companies as $row) {
+                $cards = Cards::where(array('company_id' => $row->id, 'avaliable' => 0))->with('company')->get()->unique('card_price');
             }
+        } else {
+
+            $cards = Cards::where(array('avaliable' => 0))->with('company')->distinct('card_price')->groupBy('card_price')->get();
         }
-            else{
-                
-              $cards=Cards::where(array('avaliable'=>0))->with('company')->distinct('card_price')->groupBy('card_price')->get();
-            }
-        
-    
-        
-        return $this->apiResponse($cards,200);
+
+
+
+        return $this->apiResponse($cards, 200);
     }
 
 
 
-     public function cardscount(Request $request)
+    public function cardscount(Request $request)
     {
-      
-            $cards=Cards::where(array('card_price'=>$request->card_price,'avaliable'=>0))->count();
 
-        if($cards >0){
-            $message="Cards Avaliable ";
-        }else{
-            $message="No Cards Avaliable For this Price";
+        $cards = Cards::where(array('card_price' => $request->card_price, 'avaliable' => 0))->count();
+
+        if ($cards > 0) {
+            $message = "Cards Avaliable ";
+        } else {
+            $message = "No Cards Avaliable For this Price";
         }
 
-        return $this->apiResponse2($cards,$message,200);
+        return $this->apiResponse2($cards, $message, 200);
     }
 
     /**
