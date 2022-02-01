@@ -35,22 +35,26 @@ class CompanyController extends Controller
                     'securityCode' => 'c',
                     'langId' => 1,
                 ]);
+                if (isset($balancenational)) {
+                    if ($balancenational->balance > 0) {
+                        $nationalApicompany = Http::withHeaders([
+                            'Content-Type' => 'application/x-www-form-urlencoded'
+                        ])->post('https://taxes.like4app.com/online/categories', [
+                            'deviceId' => '111',
+                            'email' => 'c',
+                            'password' => 'c',
+                            'securityCode' => 'c',
+                            'langId' => 1,
+                        ]);
 
-                if ($balancenational->balance > 0) {
-                    $nationalApicompany = Http::withHeaders([
-                        'Content-Type' => 'application/x-www-form-urlencoded'
-                    ])->post('https://taxes.like4app.com/online/categories', [
-                        'deviceId' => '111',
-                        'email' => 'c',
-                        'password' => 'c',
-                        'securityCode' => 'c',
-                        'langId' => 1,
-                    ]);
 
+                        return $nationalApicompany;
 
-                    return $nationalApicompany;
-
-                    ////////////////end//////////////
+                        ////////////////end//////////////
+                    } else {
+                        $companies = Company::where('kind', 'national')->get();
+                        return $this->apiResponse($companies, 200);
+                    }
                 } else {
                     $companies = Company::where('kind', 'national')->get();
                     return $this->apiResponse($companies, 200);
@@ -66,8 +70,6 @@ class CompanyController extends Controller
             $companies = Company::all();
             return $this->apiResponse($companies, 200);
         }
-
-      
     }
 
     /**
