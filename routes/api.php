@@ -29,8 +29,8 @@ Route::resource('companies','CompanyController');
 
 
 Route::resource('cards','CardController');
-Route::get('localcards','CardController@localcards');
-Route::get('nationalcards','CardController@nationalcards');
+Route::post('localcards','CardController@localcards');
+Route::post('nationalcards','CardController@nationalcards');
 //////////used apies
 Route::post('allcompanies','CompanyController@allcompanies');
 Route::post('cardsbycompany','CardController@cardsbycompany');

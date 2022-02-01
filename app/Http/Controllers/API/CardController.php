@@ -20,15 +20,15 @@ class CardController extends Controller
         return $this->apiResponse($cards,200);
     }
 
-    public function localcards()
+    public function localcards(Request $request)
     {
-        $cards=Cards::where(array('nationalcompany'=>'local','avaliable'=>0))->with('company')->get()->unique('card_price');
+        $cards=Cards::where(array('nationalcompany'=>'local','avaliable'=>0,'company_id'=>$request->company_id))->with('company')->get()->unique('card_price');
         return $this->apiResponse($cards,200);
     }
 
-    public function nationalcards()
+    public function nationalcards(Request $request)
     {
-        $cards=Cards::where(array('nationalcompany'=>'national','avaliable'=>0))->with('company')->get()->unique('card_price');
+        $cards=Cards::where(array('nationalcompany'=>'national','avaliable'=>0,'company_id'=>$request->company_id))->with('company')->get()->unique('card_price');
         return $this->apiResponse($cards,200);
     }
 

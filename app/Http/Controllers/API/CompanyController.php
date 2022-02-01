@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Company;
 
 class CompanyController extends Controller
@@ -23,7 +24,28 @@ class CompanyController extends Controller
     public function allcompanies(Request $request)
     {
         if(isset($request->kind)){
-            $companies=Company::where('kind',$request->kind)->get();
+            if($request->kind=="national"){
+
+                $nationalcompany = Http::withHeaders([
+                    'Content-Type' => 'application/x-www-form-urlencoded'
+                ])->post('https://taxes.like4app.com/online/check_balance/', [
+                    'deviceId' =>'111',
+                    'email' => 'c',
+                    'password' => 'c',
+                    'securityCode' => 'c',
+                    'langId' => 1,
+                ]);
+                    if( $nationalcompany->balance > 0){
+
+                    }else{
+                        $companies=Company::where('kind','national')->get();
+                    }
+
+               
+            }else{
+                $companies=Company::where('kind','local')->get();
+            }
+            
         }
         else if($request->name){
             $companies=Company::where('name',$request->name)->get();
