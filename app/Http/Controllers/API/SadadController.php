@@ -30,6 +30,7 @@ class SadadController extends Controller
 
     public function verify(Request $request)
     {
+        dd(rand());
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
@@ -56,6 +57,7 @@ class SadadController extends Controller
                 $request_data['card_price'] = $request->amount;
                 $request_data['client_name'] = $request->client_name;
                 $request_data['client_number'] = $request->client_number;
+                $request_data['process_id'] =$response['result']['process_id'];
                 $order = Order::create($request_data);
 
                 $dataa['avaliable'] = 1;
@@ -96,6 +98,7 @@ class SadadController extends Controller
             $order = Order::find($id);
             if (!empty($order)) {
                 $order->transaction_id = $response['result']['transaction_id'];
+                $order->invoice_no = rand();
                 $order->paid = $request->paid;
 
                 if ($order->update()) {
