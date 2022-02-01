@@ -49,7 +49,7 @@ class CardController extends Controller
 
 
         if (isset($balancenational) && !empty($balancenational)) {
-            return $balancenational;
+           
             if ($balancenational->balance > 0) {
 
                 if (isset($request->company_id)) {
