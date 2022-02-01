@@ -48,7 +48,7 @@ class CardController extends Controller
         ]);
 
 
-        if (isset($balancenational) && !empty($balancenational)) {
+        if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
            
             if ($balancenational->balance > 0) {
 

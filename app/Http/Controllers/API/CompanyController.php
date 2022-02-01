@@ -35,8 +35,8 @@ class CompanyController extends Controller
                     'securityCode' => 'c',
                     'langId' => 1,
                 ]);
-                if (isset($balancenational) && !empty($balancenational)) {
-                    return $balancenational;
+                if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
+                   // return $balancenational;
                     if ($balancenational->balance > 0) {
                         $nationalApicompany = Http::withHeaders([
                             'Content-Type' => 'application/x-www-form-urlencoded'
