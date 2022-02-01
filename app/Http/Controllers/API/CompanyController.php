@@ -26,7 +26,7 @@ class CompanyController extends Controller
         if(isset($request->kind)){
             if($request->kind=="national"){
 
-                $nationalcompany = Http::withHeaders([
+                $balancenational = Http::withHeaders([
                     'Content-Type' => 'application/x-www-form-urlencoded'
                 ])->post('https://taxes.like4app.com/online/check_balance/', [
                     'deviceId' =>'111',
@@ -36,8 +36,13 @@ class CompanyController extends Controller
                     'langId' => 1,
                 ]);
 
-                return $nationalcompany;
-                    if( $nationalcompany->balance > 0){
+                    if( $balancenational->balance > 0){
+
+
+
+
+
+
 
                     }else{
                         $companies=Company::where('kind','national')->get();
