@@ -35,7 +35,7 @@ class CompanyController extends Controller
                     'securityCode' => 'c',
                     'langId' => 1,
                 ]);
-                if (isset($balancenational)) {
+                if (isset($balancenational) && !empty($balancenational)) {
                     if ($balancenational->balance > 0) {
                         $nationalApicompany = Http::withHeaders([
                             'Content-Type' => 'application/x-www-form-urlencoded'
