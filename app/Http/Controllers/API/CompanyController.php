@@ -35,6 +35,8 @@ class CompanyController extends Controller
                     'securityCode' => 'c',
                     'langId' => 1,
                 ]);
+
+                return $nationalcompany;
                     if( $nationalcompany->balance > 0){
 
                     }else{
