@@ -33,7 +33,7 @@ class OrderController extends Controller
             $request_data['client_name'] = $request->client_name;
             $request_data['client_number'] = $request->client_number;
             $order = Order::create($request_data);
-//dd($order);
+dd($order);
             if($order){
                $dataa['avaliable']=1;
                Cards:: where('id', $order->card_id)->update($dataa);
