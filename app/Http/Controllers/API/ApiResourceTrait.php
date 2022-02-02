@@ -51,6 +51,19 @@ namespace App\Http\Controllers\API;
             return response($array,$code);
         }
 
+
+        public function apiResponse6($count=null,$orderid=null,$error=null,$code=200){
+            $array=[
+                'count'=>$count,
+                'order ID'=>$orderid,
+                'status'=>$code==200 ? true:false,
+                'message' =>$error,
+            ];
+            return response($array,$code);
+        }
+
+
+
     }
 
 
