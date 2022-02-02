@@ -57,7 +57,7 @@ class OrderController extends Controller
     public function clientorder(Request $request)
     {
         $order= Order::where('client_id', $request->clientid)->with('cards')->get();   
-        if(!empty($order)){
+        if(count($order) >0){
             return $this->apiResponse($order, 200);
         }else{
             return $this->apiResponse($order, 400);
