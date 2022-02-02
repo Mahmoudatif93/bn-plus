@@ -25,7 +25,7 @@ class OrderController extends Controller
         $cards = Cards::where(array('card_price' => $request->card_price, 'avaliable' => 0))->count();
 
         if ($cards > 0) {
-            $order=new Order();
+           // $order=new Order();
 
             $request_data['card_id'] = $request->card_id;
             $request_data['client_id'] = $request->client_id;
@@ -33,8 +33,8 @@ class OrderController extends Controller
             $request_data['client_name'] = $request->client_name;
             $request_data['client_number'] = $request->client_number;
             $order = Order::create($request_data);
-dd($order);
-            if($order->save()){
+//dd($order);
+            if($order){
                $dataa['avaliable']=1;
                Cards:: where('id', $order->card_id)->update($dataa);
                return $this->apiResponse3($order->id,200);
