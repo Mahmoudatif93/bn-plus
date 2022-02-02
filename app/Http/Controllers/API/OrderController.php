@@ -26,11 +26,14 @@ class OrderController extends Controller
 
         if ($cards > 0) {
             $order=new Order();
-            $order->card_id=$request->card_id;
-            $order->client_id=$request->client_id;
-            $order->card_price=$request->card_price;
-            $order->client_name=$request->client_name;
-            $order->client_number=$request->client_number;
+
+            $request_data['card_id'] = $request->card_id;
+            $request_data['client_id'] = $request->client_id;
+            $request_data['card_price'] = $request->card_price;
+            $request_data['client_name'] = $request->client_name;
+            $request_data['client_number'] = $request->client_number;
+            $order = Order::create($request_data);
+dd($order);
             if($order->save()){
                $dataa['avaliable']=1;
                Cards:: where('id', $order->card_id)->update($dataa);
