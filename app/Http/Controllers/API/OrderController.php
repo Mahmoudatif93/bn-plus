@@ -36,7 +36,7 @@ class OrderController extends Controller
 
             if($order){
                $dataa['avaliable']=1;
-               Cards:: where('id', $order->id)->update($dataa);
+               Cards:: where('id', $order->card_id)->update($dataa);
                return $this->apiResponse3($order->id,200);
             }else{
               return $this->apiResponse3('','error to Reserve Order',404);
