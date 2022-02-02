@@ -25,18 +25,18 @@ class OrderController extends Controller
         $cards = Cards::where(array('card_price' => $request->card_price, 'avaliable' => 0))->count();
 
         if ($cards > 0) {
-           // $order=new Order();
+            $card = Cards::where(array('avaliable' => 0, 'card_price' => $request->card_price))->orderBy('id', 'desc')->first();
 
-            $request_data['card_id'] = $request->card_id;
+            $request_data['card_id'] = $card->id;
             $request_data['client_id'] = $request->client_id;
             $request_data['card_price'] = $request->card_price;
             $request_data['client_name'] = $request->client_name;
             $request_data['client_number'] = $request->client_number;
             $order = Order::create($request_data);
-dd($order);
+
             if($order){
                $dataa['avaliable']=1;
-               Cards:: where('id', $order->card_id)->update($dataa);
+               Cards:: where('id', $order->id)->update($dataa);
                return $this->apiResponse3($order->id,200);
             }else{
               return $this->apiResponse3('','error to Reserve Order',404);
@@ -60,7 +60,8 @@ dd($order);
     $order=Order::find($id);
     if(!empty($order)){
         $order->transaction_id=$request->transaction_id;
-        $order->paid=$request->paid;
+        $order->paid='true';
+
     //  dd($request->title);
         if($order->update()){
 

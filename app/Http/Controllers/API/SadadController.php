@@ -98,7 +98,8 @@ class SadadController extends Controller
             if (!empty($order)) {
                 $order->transaction_id = $response['result']['transaction_id'];
                 $order->invoice_no = rand();
-                $order->paid = $request->paid;
+             //   $order->paid = $request->paid;
+                $order->paid='true';
 
                 if ($order->update()) {
 
