@@ -56,11 +56,11 @@ $process_id=$response['result']['process_id'];
                 $request_data['card_price'] = $request->amount;
                 $request_data['client_name'] = $request->client_name;
                 $request_data['client_number'] = $request->client_number;
-                $request_data['transaction_id'] =$process_id;
+                $request_data['process_id'] =$process_id;
                 $request_data['invoice_no'] = rand();
                // $order->invoice_no = rand();
 
-              dd( $request_data);
+               
                 $order = Order::create($request_data);
 
                 $dataa['avaliable'] = 1;
