@@ -60,7 +60,7 @@ $process_id=$response['result']['process_id'];
                 $request_data['invoice_no'] = rand();
                // $order->invoice_no = rand();
 
-             //  dd( $request_data);
+              dd( $request_data);
                 $order = Order::create($request_data);
 
                 $dataa['avaliable'] = 1;
