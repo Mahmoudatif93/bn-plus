@@ -22,10 +22,10 @@ class OrderController extends Controller
     {
 
         
-        $cardscount = Cards::where(array('card_price' => $request->card_price, 'avaliable' => 0))->count();
+        $cardscount = Cards::where(array('card_price' => $request->card_price, 'avaliable' => 0, 'purchase' => 0))->count();
 
         if ($cardscount > 0) {
-            $card = Cards::where(array('avaliable' => 0, 'card_price' => $request->card_price))->orderBy('id', 'desc')->first();
+            $card = Cards::where(array('avaliable' => 0, 'purchase' => 0, 'card_price' => $request->card_price))->orderBy('id', 'desc')->first();
 
             $request_data['card_id'] = $card->id;
             $request_data['client_id'] = $request->client_id;
@@ -78,8 +78,8 @@ class OrderController extends Controller
 
     //  dd($request->title);
         if($order->update()){
-
-            Cards:: where('id', $order->card_id)->delete();
+            $updatecard['purchase']=1;
+            Cards:: where('id', $order->card_id)->update( $updatecard);
             return response()->json(['status'=>'success']);
         }else{
             return response()->json(['status'=>'error']);

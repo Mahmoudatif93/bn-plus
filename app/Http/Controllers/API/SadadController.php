@@ -41,7 +41,7 @@ class SadadController extends Controller
             'amount' => $request->amount
         ]);
 
-        $card = Cards::where(array('avaliable' => 0, 'card_price' => $request->amount))->orderBy('id', 'desc')->first();
+        $card = Cards::where(array('avaliable' => 0, 'purchase' => 0, 'card_price' => $request->amount))->orderBy('id', 'desc')->first();
         if (!empty($card)) {
 
             
@@ -103,7 +103,10 @@ class SadadController extends Controller
 
                 if ($order->update()) {
 
-                    Cards::where('id', $order->card_id)->delete();
+                    
+
+                    $updatecard['purchase']=1;
+                  Cards:: where('id', $order->card_id)->update( $updatecard);
                     return $this->apiResponse5(true, $response['message'], $response['status'], $response['result']);
                 } else {
                     return response()->json(['status' => 'error']);
