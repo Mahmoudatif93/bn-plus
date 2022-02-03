@@ -56,7 +56,10 @@ class OrderController extends Controller
 
     public function clientorder(Request $request)
     {
+        dd($request->clientid);
         $order= Order::where('client_id', $request->clientid)->with('cards')->get();   
+
+
         if(count($order) >0){
             return $this->apiResponse($order, 'You have orders',200);
         }else{
