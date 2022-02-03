@@ -49,7 +49,7 @@ class SadadController extends Controller
 
                 return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
             } else {
-$process_id=$response['result']['process_id'];
+$process_id=$response['result']['amount'];
 
                 $request_data['card_id'] = $card->id;
                 $request_data['client_id'] = $request->client_id;
