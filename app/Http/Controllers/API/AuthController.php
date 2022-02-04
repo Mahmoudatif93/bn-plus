@@ -34,7 +34,7 @@ class AuthController extends Controller
 
 
         $client = Client::where('id', request('id'))->first();
-
+dd($client);
         if (empty($client)) {
             $create = Client::create([
                 'id' => request('id'),
