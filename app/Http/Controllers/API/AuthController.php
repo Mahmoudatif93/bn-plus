@@ -53,10 +53,10 @@ class AuthController extends Controller
         } else {
 
             $credentials = request(['phone', 'password']);
-            if (!$token = auth('api')->attempt($credentials)) {
+           /* if (!$token = auth('api')->attempt($credentials)) {
                 return response()->json(['error' => 'Unauthorized'], 401);
-            }
-            return $this->respondWithToken($token);
+            }*/
+            return $this->respondWithToken($credentials);
         }
     }
 
