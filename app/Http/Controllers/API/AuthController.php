@@ -4,6 +4,13 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Client;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+use Session;
+
 
 class AuthController extends Controller
 {
@@ -14,7 +21,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-      //  $this->middleware('jwt.auth', ['except' => ['login']]);
+        //  $this->middleware('jwt.auth', ['except' => ['login']]);
     }
 
     /**
@@ -24,13 +31,33 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
 
-        if (! $token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+
+        $client = Client::where('id', request('id'))->first();
+
+        if (empty($client)) {
+            $create = Client::create([
+                'id' => request('id'),
+                'name' => request('name'),
+                'email' => request('email'),
+                'phone' => request('phone'),
+                'password' => Hash::make(request('password')),
+
+            ]);
+
+            $credentials = request(['phone', 'password']);
+            if (!$token = auth('api')->attempt($credentials)) {
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }
+            return $this->respondWithToken($token);
+        } else {
+
+            $credentials = request(['phone', 'password']);
+            if (!$token = auth('api')->attempt($credentials)) {
+                return response()->json(['error' => 'Unauthorized'], 401);
+            }
+            return $this->respondWithToken($token);
         }
-
-        return $this->respondWithToken($token);
     }
 
     /**

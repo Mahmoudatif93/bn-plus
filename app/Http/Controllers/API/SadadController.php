@@ -97,8 +97,6 @@ $process_id=$response['result']["process_id"];
             'customer_ip' => $request->customer_ip,
 
         ]);
-
-
         if (isset($response['error'])) {
             return $this->apiResponse4(false, $response['error']['message'], $response['error']['status']);
         } else {
@@ -106,14 +104,9 @@ $process_id=$response['result']["process_id"];
             $order = Order::find($id);
             if (!empty($order)) {
                 $order->transaction_id = $response['result']['transaction_id'];
-               // $order->invoice_no = rand();
-             //   $order->paid = $request->paid;
                 $order->paid='true';
 
                 if ($order->update()) {
-
-                    
-
                     $updatecard['purchase']=1;
                   Cards:: where('id', $order->card_id)->update( $updatecard);
                     return $this->apiResponse5(true, $response['message'], $response['status'], $response['result']);
@@ -123,9 +116,6 @@ $process_id=$response['result']["process_id"];
             } else {
                 return response()->json(['status' => 'error']);
             }
-
-
-            // 
         }
     }else{
         return $this->apiResponse4(false, 'no Order for this order id',400);  

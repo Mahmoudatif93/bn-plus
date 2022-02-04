@@ -8,7 +8,7 @@ class Client extends Model
 {
     protected $guarded = [];
 
-    protected $fillable = ['name', 'phone','address','email'];
+    protected $fillable = ['id','name', 'phone','email','password'];
 
  
 
