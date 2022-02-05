@@ -23,11 +23,9 @@ Route::middleware('jwtAuth')->group(function() {
     Route::get('me','AuthController@me');
     Route::get('payload','AuthController@payload');
     Route::resource('posts','postController');
-});
 
+/////////////////////////////
 Route::resource('companies','CompanyController');
-
-
 Route::resource('cards','CardController');
 Route::post('localcards','CardController@localcards');
 Route::post('nationalcards','CardController@nationalcards');
@@ -42,6 +40,11 @@ Route::post('clientorder','OrderController@clientorder');
 Route::post('verify','SadadController@verify');
 Route::post('confirm','SadadController@confirm');
 //////////////////////////
+
+
+});
+
+
 
 
 Route::post('login','AuthController@login');
