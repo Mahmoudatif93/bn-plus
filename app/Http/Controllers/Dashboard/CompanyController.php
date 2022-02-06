@@ -13,6 +13,24 @@ class CompanyController extends Controller
 {
     public function index(Request $request)
     {
+
+        $balancenational = Http::withHeaders([
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ])->post('https://taxes.like4app.com/online/check_balance/', [
+            'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+            'email' => 'sales@bn-plus.ly',
+            'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+            'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+            'langId' => 1,
+        ]);
+        if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
+           // return $balancenational;
+            if ($balancenational->balance > 0) {
+                return $balancenational;
+            }
+        }
+
+
         $Companies = Company::when($request->search, function ($q) use ($request) {
 
             return $q->where('name', '%' . $request->search . '%');
