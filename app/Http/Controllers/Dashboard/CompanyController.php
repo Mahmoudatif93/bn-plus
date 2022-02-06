@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Http;
 class CompanyController extends Controller
 {
     public function index(Request $request)
