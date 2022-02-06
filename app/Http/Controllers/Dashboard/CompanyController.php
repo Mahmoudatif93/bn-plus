@@ -23,6 +23,7 @@ class CompanyController extends Controller
             'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
             'langId' => 1,
         ]);
+        return $balancenational;
         if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
            // return $balancenational;
             if ($balancenational->balance > 0) {
