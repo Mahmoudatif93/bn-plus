@@ -31,13 +31,7 @@ class OrderController extends Controller
     
     public function destroy(Order $order)
     {
-        foreach ($order->products as $product) {
-
-            $product->update([
-                'stock' => $product->stock + $product->pivot->quantity
-            ]);
-
-        }//end of for each
+   
 
         $order->delete();
         session()->flash('success', __('site.deleted_successfully'));
