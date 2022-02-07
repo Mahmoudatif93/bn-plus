@@ -50,12 +50,12 @@ class CompanyController extends Controller
         ));
 
         $balancenational = curl_exec($curl);
-
+        return $curl;
         curl_close($curl);
        // echo $balancenational;
 
 
-        return $curl;
+      
 
 
         $Companies = Company::when($request->search, function ($q) use ($request) {
