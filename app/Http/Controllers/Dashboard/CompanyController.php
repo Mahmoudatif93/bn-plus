@@ -27,7 +27,7 @@ class CompanyController extends Controller
 */
 
         $curl = curl_init();
-
+        return $curl;
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://taxes.like4app.com/online/check_balance/",
             CURLOPT_RETURNTRANSFER => true,
