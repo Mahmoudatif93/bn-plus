@@ -26,7 +26,7 @@ class CompanyController extends Controller
 
 
         
-        return $balancenational ;
+     //   return $balancenational ;
 
 
         $Companies = Company::when($request->search, function ($q) use ($request) {
