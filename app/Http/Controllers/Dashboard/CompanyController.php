@@ -28,7 +28,10 @@ class CompanyController extends Controller
 
        // return $balancenational ; 
 
-        return $balancenational ;
+       $body = $balancenational->body();
+       echo "<pre>";
+       print_r($body);
+       die;
 
 
 
