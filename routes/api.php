@@ -43,7 +43,7 @@ Route::post('confirm','SadadController@confirm');
 
 
 });
-
+Route::post('allcompanies','CompanyController@check_balance');
 
 
 
