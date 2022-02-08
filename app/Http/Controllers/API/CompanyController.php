@@ -153,7 +153,7 @@ class CompanyController extends Controller
             'langId' => 1,
         ]);
 
-
+        return $balancenational ;
         return $this->apiResponse($balancenational, 200);
       //return $balancenational ;
     }
