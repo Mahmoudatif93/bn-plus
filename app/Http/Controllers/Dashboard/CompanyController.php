@@ -28,7 +28,7 @@ class CompanyController extends Controller
 
         $response = Http::withHeaders([
             'Accept' => 'application/json',
-            'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzI4OTk4NzZmNmM3YzQzMGM5ZDM0MjY2OWY4ZDVkYTI0Mjg3NzBkN2RkNTY0ZTk2YWFkOWVlZjQ3NjAxZTQ0M2JmZGU4NmM1OWNhOGIzN2EiLCJpYXQiOjE2NDQzNDIyOTcsIm5iZiI6MTY0NDM0MjI5NywiZXhwIjoxNzcwNTcyNjk3LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.dIvjp4GiwF_OcixEk9MDV1qSJdkq4tKWC-WCLFU1TqIBxGRD4bmDv2TdBoG8s_b1w99-TliRDqtwDNZy0IjyO3j0-9YLBS4uHJ1Xmd9ouG1YVNGg424o4BkxQ4RMlBMVVDr5G5YBDn19Zjj0y-Qt-i8UGBmi4vDxZ1hvm5u7ZfNFV9lkbrg6SnUV54jeLJsf4RBYMRkrvA7Bbk3l_DfZEg65H8Kd3RPA2CYx3aSDus-dMtS3ZwRwbd0a1CpOmIuIjSTZmgD1GyzGGagKW1X-o997EYSYrf4SjjTx7nU7q9bgwaTNahmB3XKTErvYU2IP1MFKgKb1qvI2fu2zDTsnwOSFSGg6RSud6brIiWOZNNX1vjGKHR_o0XxVPKG8MmwjfGbhCS18JpJTIxYup4Ly-5FZOJILSa2O7SLZwbf5EdKSnu8kTixBXP6LPHJYRg-iM1awfpjzkDDKeo936gmFqDp3GikBsqzfAyFLCY0OdvphTGUoBhaHKPjsea6xwEKYuhLlpYe-UoUkmpW4p0HJ7WH6ZdOuViWw9rIqk-w1d9BBTqdRyx1pcoi90wjfIzYukFKus-S6AD4DJ5Z4ZVXF-S7kLxPoPSBLngW4azhUNdt8_b_7Dg-bhky3-pdJ9cQ70z7bG7Sl288lZ60Ae9XX_nkO-fS5a0rZEqFJsT3RkCI',
+            'Authorization' => 'Bearer sk_a9a060057c84ea4636c39735226719887112ffb4',
             'X-API-KEY' => '984adf4c-44e1-418f-829b'
         ])->post('https://api.plutus.ly/api/v1/transaction/sadadapi/verify', [
             'mobile_number' =>'201099922302',
