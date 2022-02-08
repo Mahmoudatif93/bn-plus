@@ -24,18 +24,9 @@ class CompanyController extends Controller
             'langId' => 1,
         ]);
 
-       // return $balancenational ; eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzI4OTk4NzZmNmM3YzQzMGM5ZDM0MjY2OWY4ZDVkYTI0Mjg3NzBkN2RkNTY0ZTk2YWFkOWVlZjQ3NjAxZTQ0M2JmZGU4NmM1OWNhOGIzN2EiLCJpYXQiOjE2NDQzNDIyOTcsIm5iZiI6MTY0NDM0MjI5NywiZXhwIjoxNzcwNTcyNjk3LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.dIvjp4GiwF_OcixEk9MDV1qSJdkq4tKWC-WCLFU1TqIBxGRD4bmDv2TdBoG8s_b1w99-TliRDqtwDNZy0IjyO3j0-9YLBS4uHJ1Xmd9ouG1YVNGg424o4BkxQ4RMlBMVVDr5G5YBDn19Zjj0y-Qt-i8UGBmi4vDxZ1hvm5u7ZfNFV9lkbrg6SnUV54jeLJsf4RBYMRkrvA7Bbk3l_DfZEg65H8Kd3RPA2CYx3aSDus-dMtS3ZwRwbd0a1CpOmIuIjSTZmgD1GyzGGagKW1X-o997EYSYrf4SjjTx7nU7q9bgwaTNahmB3XKTErvYU2IP1MFKgKb1qvI2fu2zDTsnwOSFSGg6RSud6brIiWOZNNX1vjGKHR_o0XxVPKG8MmwjfGbhCS18JpJTIxYup4Ly-5FZOJILSa2O7SLZwbf5EdKSnu8kTixBXP6LPHJYRg-iM1awfpjzkDDKeo936gmFqDp3GikBsqzfAyFLCY0OdvphTGUoBhaHKPjsea6xwEKYuhLlpYe-UoUkmpW4p0HJ7WH6ZdOuViWw9rIqk-w1d9BBTqdRyx1pcoi90wjfIzYukFKus-S6AD4DJ5Z4ZVXF-S7kLxPoPSBLngW4azhUNdt8_b_7Dg-bhky3-pdJ9cQ70z7bG7Sl288lZ60Ae9XX_nkO-fS5a0rZEqFJsT3RkCI
+       // return $balancenational ; 
 
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-            'Authorization' => 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZmZkMDkwZjNhNTZkNjk2NTAyM2M1ODVlNzVlOGZiYzk2YjBlY2ZhNjU4ODE2YWY0ZDEyMjE4YjVhMDlmZTE5NmM5MjhhMWMwY2VjZjlhNmMiLCJpYXQiOjE2NDM0NjQ3NTksIm5iZiI6MTY0MzQ2NDc1OSwiZXhwIjoxNzY5Njk1MTU5LCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.ncI5blD6gGARhGtwdYFPvV-BALDy10Isv8viIIm_L-fwUBJJF6qpwca0ZWnoBB0LmcLXOxOV-N4jYy0JeA1PXzrPJN6EyTLN8du3u0dQAXeJiH717YU8XMw_JIsaVfY-LV1cGegIf8hE69tTBhClTBxvizqCB2yu2M2xLxb4z7Wp3PTSppYWnmVm7ZOU1P0KUH5H_9WuSbIqInjr8dq5AAJQdHcbuubu4uv9q-l18JssiBvxK2WJogZ_cE9FNEJ5y9AI0xJY1_fjoXbGyx1pOolU8HYscL5g6uNtPX-Ir10fbAV6Tj61vlWw2J35KA9oxv9_-Ci5UYdzlPncZ4XqwCtuElUmyp-S_A2Rdi9aAQgMkTZKtRtSUhsLq06g18zg8qAW4xDOSDE-vL-fbLSBBj3mHs3-KBjqrxH5ikLwmpZEH9UkM9yMpIUu11RE8rdbO2uzGMSun9aWTLmwXp8NVeToO3U7c7hVEYuduOHOUPGto_3E4_Tc8L2J85VyiKazeGzAiH3F760THxqelN2iTUqQsFZjvSgESWUvMr-xwKVrwnxiHKgVQ_sCefnheMt8WJ_FbQ6Mau0HOLwVhbQ9N4ePu6_L5itq_aYoUfmcl2cOuqyhzXMQmDBHPt1t7GDYXj6dviMFifAC2BQcLee5f3DEKm8G7epfRwnvlj8LjUk',
-            'X-API-KEY' => '984adf4c-44e1-418f-829b'
-        ])->post('https://api.plutus.ly/api/v1/transaction/sadadapi/verify', [
-            'mobile_number' =>'201099922302',
-            'birth_year' => '1993',
-            'amount' => 20
-        ]);
-        return $response ;
+        return $balancenational ;
 
 
 
