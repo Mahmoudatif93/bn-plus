@@ -37,12 +37,13 @@ Route::post('reserveorder','OrderController@reserveorder');
 Route::post('finalorder','OrderController@finalorder');
 Route::post('clientorder','OrderController@clientorder');
 //////////////////////Sadad API 
-Route::post('verify','SadadController@verify');
+
 Route::post('confirm','SadadController@confirm');
 //////////////////////////
 
 
 });
+Route::post('verify','SadadController@verify');
 Route::post('check_balance','CompanyController@check_balance');
 
 
