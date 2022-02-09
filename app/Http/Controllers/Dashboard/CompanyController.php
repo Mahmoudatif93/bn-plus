@@ -29,7 +29,8 @@ class CompanyController extends Controller
 
         $balancenational = Http::attach(
            
-            
+            'attachment', file_get_contents('photo.jpg'), 'photo.jpg'
+
         )->post('https://taxes.like4app.com/online/check_balance', [
             'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
             'email' => 'sales@bn-plus.ly',
