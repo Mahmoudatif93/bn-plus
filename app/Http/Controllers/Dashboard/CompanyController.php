@@ -9,6 +9,8 @@ use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use PDF2;
+
 class CompanyController extends Controller
 {
     public function index(Request $request)
@@ -129,5 +131,14 @@ class CompanyController extends Controller
         return redirect()->route('dashboard.Companies.index');
 
     }//end of destroy
+
+
+    function generate_pdf() {
+        $data = [
+            'foo' => 'bar'
+        ];
+        $pdf = PDF2::loadView('dashboard.Companies.pdf', $data);
+        return $pdf->stream('document.pdf');
+    }
 
 }//end of controller

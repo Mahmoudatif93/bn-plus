@@ -31,6 +31,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
             //user routes
             Route::resource('users', 'UserController')->except(['show']);
 
+            Route::get('checkpdf', 'CompanyController@generate_pdf')->name('checkpdf');
+
+
         });//end of dashboard routes
     });
 

@@ -14,6 +14,10 @@
             </ol>
         </section>
 
+
+
+       <!-- <a href="{{ url('dashboard/checkpdf') }}"><i class="fa fa-dashboard"></i>print</a>-->
+
         <section class="content">
 
             <div class="box box-primary">
