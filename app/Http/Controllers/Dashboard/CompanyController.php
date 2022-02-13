@@ -96,11 +96,11 @@ return $balancenational;*/
 
                     array_push($allcompanyid, $company['id']);
                 }
-               
 
-                    for ($i = 0; $i < count($allcompanyid); $i++) {
 
-                        if (count(Company::where('id', $allcompanyid[$i])->get()) < 0) {
+                for ($i = 0; $i < count($allcompanyid); $i++) {
+
+                    if (count(Company::where('id', $allcompanyid[$i])->get()) < 0) {
 
 
 
@@ -112,6 +112,7 @@ return $balancenational;*/
 
                         $compsave->save();
                     }
+                    return count(Company::where('id', $allcompanyid[$i])->get());
                 }
             }
 
