@@ -79,7 +79,7 @@
 
                                     </td>
                                     
-                                    <td><img src="{{'https://bn-plus.ly/BNplus/public/uploads/'.$category->company_image}}" style="width: 100px"  class="img-thumbnail" alt=""></td>
+                                    <td><img src="{{$category->company_image}}" style="width: 100px"  class="img-thumbnail" alt=""></td>
 
 
 
