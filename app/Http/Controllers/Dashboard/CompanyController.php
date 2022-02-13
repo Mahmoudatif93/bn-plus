@@ -96,7 +96,7 @@ return $balancenational;*/
 
                     array_push($allcompanyid, $company['id']);
                 }
-                //  return $allcompanyid;
+                 return Company::whereIn('id', $allcompanyid)->get();
 
 
 
