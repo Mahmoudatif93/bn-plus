@@ -61,7 +61,7 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
 
     $json = json_decode($balancenational, true);
-    return $json['balance']
+    return $json['balance'];
 
 
   /*  if ($balancenational->balance > 0) {
