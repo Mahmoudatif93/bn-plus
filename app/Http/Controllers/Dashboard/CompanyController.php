@@ -134,7 +134,7 @@ class CompanyController extends Controller
 
                     $cards = json_decode($cardsnational, true);
 
-                    return $cardsnational;
+                    //return $cardsnational;
                     $cardsave = new Cards;
                     $allcardsid = array();
                     foreach ($cards['data'] as $cards) {
@@ -145,7 +145,7 @@ class CompanyController extends Controller
 
                         if (count(Cards::where('id', $allcardsid[$i])->get()) == 0) {
 
-                            if (count(Company::where('id', $allcardsid[$i])->get()) != 0) {
+                            if (count(Company::where('id', $cards['categoryId'])->get()) != 0) {
 
 
                             $cardsave->id = $allcardsid[$i];
