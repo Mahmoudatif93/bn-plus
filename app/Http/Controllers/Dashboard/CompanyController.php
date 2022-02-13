@@ -88,12 +88,14 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
        // return $national['data'];
         foreach($national['data'] as $company){
-            return $company['categoryName'];
-        }
-        $request_data['company_image']=$national['amazonImage'] ;
-        $request_data['name']=$national['categoryName'] ;
+            
+            $request_data['id']=$company['id'] ;
+        $request_data['company_image']=$company['amazonImage'] ;
+        $request_data['name']=$company['categoryName'] ;
+        $request_data['kind']='national' ;
+        $request_data['api']=1 ;
         Company::create($request_data);
-
+             }
 
         return $companiesnational;
 
