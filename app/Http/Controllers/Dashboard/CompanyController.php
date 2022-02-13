@@ -145,7 +145,7 @@ class CompanyController extends Controller
 
                         if (count(Cards::where('id', $allcardsid[$i])->get()) == 0) {
 
-                            if (count(Company::where('id', $allcardsid[$i])->get()) > 0) {
+                            if (count(Company::where('id', $allcardsid[$i])->get()) != 0) {
 
 
                             $cardsave->id = $allcardsid[$i];
