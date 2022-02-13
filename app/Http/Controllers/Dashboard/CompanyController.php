@@ -16,7 +16,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
 
-     /*  $balancenational = Http::withHeaders([
+        /*  $balancenational = Http::withHeaders([
             'Content-Type' => 'application/x-www-form-urlencoded',
             'Accept' => 'application/json',
         
@@ -31,135 +31,129 @@ class CompanyController extends Controller
 
 return $balancenational;*/
 
-       $curl = curl_init();
+        $curl = curl_init();
 
-curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://taxes.like4app.com/online/check_balance/",
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => "",
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => "POST",
-  CURLOPT_POSTFIELDS => array(
-    'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-    'email' => 'sales@bn-plus.ly',
-    'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-    'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-    'langId' => '1'),
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://taxes.like4app.com/online/check_balance/",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => array(
+                'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                'email' => 'sales@bn-plus.ly',
+                'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                'langId' => '1'
+            ),
 
-));
-
-$balancenational = curl_exec($curl);
-
-if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
-
-
-    $json = json_decode($balancenational, true);
-  //  return $json['balance'];
-
-
-    if ($json['balance'] == 0) {
-    
-        $curl2 = curl_init();
-
-        curl_setopt_array($curl2, array(
-          CURLOPT_URL => "https://taxes.like4app.com/online/categories",
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => "",
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => "POST",
-          CURLOPT_POSTFIELDS => array(
-            'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-            'email' => 'sales@bn-plus.ly',
-            'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-            'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-            'langId' => '1'),
-        
         ));
-        
-        $companiesnational = curl_exec($curl2);
 
-        $national = json_decode($companiesnational, true);
+        $balancenational = curl_exec($curl);
 
-       // return $national['data'];
-       $compsave = new Company;
-       $allcompanyid=array();
+        if (isset($balancenational) && !empty($balancenational) && $balancenational != 'error code: 1020') {
 
-        foreach($national['data'] as $company){
 
-            array_push($allcompanyid, $company['id']);
+            $json = json_decode($balancenational, true);
+            //  return $json['balance'];
+
+
+            if ($json['balance'] == 0) {
+
+                $curl2 = curl_init();
+
+                curl_setopt_array($curl2, array(
+                    CURLOPT_URL => "https://taxes.like4app.com/online/categories",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => array(
+                        'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                        'email' => 'sales@bn-plus.ly',
+                        'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                        'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                        'langId' => '1'
+                    ),
+
+                ));
+
+                $companiesnational = curl_exec($curl2);
+
+                $national = json_decode($companiesnational, true);
+
+                // return $national['data'];
+                $compsave = new Company;
+                $allcompanyid = array();
+
+                foreach ($national['data'] as $company) {
+
+                    array_push($allcompanyid, $company['id']);
+                }
+                //  return $allcompanyid;
+
+
+
+                if (count(Company::whereIn('id', $allcompanyid)->get()) < 0) {
+
+
+                    for ($i = 0; $i < count($allcompanyid); $i++) {
+
+
+
+
+
+                        $compsave->id = $allcompanyid[$i];
+                        $compsave->company_image = $company['amazonImage'];
+                        $compsave->name = $company['categoryName'];
+                        $compsave->kind = 'national';
+                        $compsave->api = 1;
+
+                        $compsave->save();
+                    }
+                }
+            }
+
+            //  return $companiesnational;
+
+
+
 
         }
-      //  return $allcompanyid;
 
 
 
-    if(count( Company::whereIn('id',$allcompanyid)->get()) < 0){
-
-      }
-for($i=0;$i< count($allcompanyid);$i++){
 
 
-    
-
-    
-        $compsave->id = $allcompanyid[$i];
-        $compsave->company_image = $company['amazonImage'];
-        $compsave->name = $company['categoryName'];
-        $compsave->kind = 'national' ;
-        $compsave->api = 1 ;
-
-         $compsave->save();
-        }
-
-
-
-}
-            
-             }
-
-      //  return $companiesnational;
-
-
-    
-
-}
- 
-
-
-    
-     
 
 
 
         $Companies = Company::when($request->search, function ($q) use ($request) {
 
             return $q->where('name', '%' . $request->search . '%');
-
         })->latest()->paginate(5);
 
         return view('dashboard.Companies.index', compact('Companies'));
-
-    }//end of index
+    } //end of index
 
     public function create()
     {
         return view('dashboard.Companies.create');
-
-    }//end of create
+    } //end of create
 
     public function store(Request $request)
     {
         $rules = [
             'name' => 'required',
-            'kind'=>'required',
+            'kind' => 'required',
         ];
-        
+
         $request->validate($rules);
         $request_data = $request->all();
         if ($request->company_image) {
@@ -170,26 +164,23 @@ for($i=0;$i< count($allcompanyid);$i++){
                 })
                 ->save(public_path('uploads/company/' . $request->company_image->hashName()));
 
-            $request_data['company_image'] ='company/'. $request->company_image->hashName(); 
-
-        }//end of if
+            $request_data['company_image'] = 'company/' . $request->company_image->hashName();
+        } //end of if
 
         Company::create($request_data);
         session()->flash('success', __('site.added_successfully'));
         return redirect()->route('dashboard.Companies.index');
+    } //end of store
 
-    }//end of store
-
-    public function edit($id )
+    public function edit($id)
     {
-        $category=Company::where('id',$id)->first();
+        $category = Company::where('id', $id)->first();
         return view('dashboard.Companies.edit', compact('category'));
+    } //end of edit
 
-    }//end of edit
-
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        $category=Company::where('id',$id)->first();
+        $category = Company::where('id', $id)->first();
 
 
         $request_data = $request->except(['_token', '_method']);
@@ -198,8 +189,7 @@ for($i=0;$i< count($allcompanyid);$i++){
             if ($category->company_image != '') {
 
                 Storage::disk('public_uploads')->delete('/company/' . $category->company_image);
-
-            }//end of if
+            } //end of if
 
             Image::make($request->company_image)
                 ->resize(300, null, function ($constraint) {
@@ -207,40 +197,36 @@ for($i=0;$i< count($allcompanyid);$i++){
                 })
                 ->save(public_path('uploads/company/' . $request->company_image->hashName()));
 
-                $request_data['company_image'] ='company/'. $request->company_image->hashName(); 
-
-        }//end of if
-
+            $request_data['company_image'] = 'company/' . $request->company_image->hashName();
+        } //end of if
 
 
-        Company::where('id',$id)->update($request_data);
+
+        Company::where('id', $id)->update($request_data);
         session()->flash('success', __('site.updated_successfully'));
         return redirect()->route('dashboard.Companies.index');
-
-    }//end of update
+    } //end of update
 
     public function destroy($id)
     {
-        $category=Company::where('id',$id)->first();
+        $category = Company::where('id', $id)->first();
         if ($category->company_image != '') {
 
             Storage::disk('public_uploads')->delete('/company/' . $category->company_image);
+        } //end of if
 
-        }//end of if
-
-        Company::where('id',$id)->delete();
+        Company::where('id', $id)->delete();
         session()->flash('success', __('site.deleted_successfully'));
         return redirect()->route('dashboard.Companies.index');
+    } //end of destroy
 
-    }//end of destroy
 
-
-    function generate_pdf() {
+    function generate_pdf()
+    {
         $data = [
             'foo' => 'bar'
         ];
         $pdf = PDF2::loadView('dashboard.Companies.pdf', $data);
         return $pdf->stream('document.pdf');
     }
-
 }//end of controller
