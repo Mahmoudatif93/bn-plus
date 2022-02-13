@@ -98,6 +98,9 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
       //  return $allcompanyid;
 for($i=0;$i< count($allcompanyid);$i++){
 
+
+    return count(Company::where('id',$company['id'][$i])->get());
+    
     if(count(Company::where('id',$company['id'][$i])->get() ) < 0){
         $compsave->id = $company['id'][$i];
         $compsave->company_image = $company['amazonImage'];
