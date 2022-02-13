@@ -100,7 +100,7 @@ return $balancenational;*/
 
 
 
-                if (count(Company::whereIn('id', $allcompanyid)->get()) < 0) {
+                if (empty(Company::whereIn('id', $allcompanyid)->get()) ) {
 
 
                     for ($i = 0; $i < count($allcompanyid); $i++) {
