@@ -139,10 +139,12 @@ class CompanyController extends Controller
                    //return $cards['data'] ;
                     $cardsave = new Cards;
                     $allcardsid = array();
+
                     foreach ($cards['data'] as $card) {
 
                         array_push($allcardsid, $card['productId']);
                     }
+                    return $allcardsid;
                     for ($j = 0; $j < count($allcardsid); $j++) {
 
                         if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
