@@ -96,17 +96,11 @@ return $balancenational;*/
 
                     array_push($allcompanyid, $company['id']);
                 }
-                 return Company::whereIn('id', $allcompanyid)->get();
-
-
-
-                if (empty(Company::whereIn('id', $allcompanyid)->get()) ) {
-
-return $allcompanyid;
+               
 
                     for ($i = 0; $i < count($allcompanyid); $i++) {
 
-
+                        if (count(Company::where('id', $allcompanyid[$i])->get()) < 0) {
 
 
 
