@@ -134,14 +134,14 @@ class CompanyController extends Controller
 
                     $cardsnational = curl_exec($curl3);
 
-                    $cards = json_decode($cardsnational, true);
+                    $allcards = json_decode($cardsnational, true);
 
-                  return count($cards['data']) ;
+                  return $allcards['data'] ;
                     $cardsave = new Cards;
                     $allcardsid = array();
-                    if (count($cards) > 0) {
-                        if(isset($cards['data'] ) ){
-                        foreach ($cards['data'] as $card) {
+                    if (count($allcards) > 0) {
+                        if(isset($allcards['data'] ) ){
+                        foreach ($allcards['data'] as $card) {
 
                             array_push($allcardsid, $card['productId']);
                         }
