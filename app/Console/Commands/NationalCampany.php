@@ -42,79 +42,163 @@ class NationalCampany extends Command
     {
         
                  /////////////dubi national api
-                 $balancenational = Http::withHeaders([
-                    'Content-Type' => 'application/x-www-form-urlencoded'
-                ])->post('https://taxes.like4app.com/online/check_balance/', [
-                    'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-                    'email' => 'sales@bn-plus.ly',
-                    'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-                    'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-                    'langId' => 1,
-                ]);
-                if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
-                   // return $balancenational;
-                    if ($balancenational->balance > 0) {
+                
+                 $curl = curl_init();
 
+                 curl_setopt_array($curl, array(
+                     CURLOPT_URL => "https://taxes.like4app.com/online/check_balance/",
+                     CURLOPT_RETURNTRANSFER => true,
+                     CURLOPT_ENCODING => "",
+                     CURLOPT_MAXREDIRS => 10,
+                     CURLOPT_TIMEOUT => 0,
+                     CURLOPT_FOLLOWLOCATION => true,
+                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                     CURLOPT_CUSTOMREQUEST => "POST",
+                     CURLOPT_POSTFIELDS => array(
+                         'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                         'email' => 'sales@bn-plus.ly',
+                         'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                         'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                         'langId' => '1'
+                     ),
+         
+                 ));
+         
+                 $balancenational = curl_exec($curl);
+         
+                 if (isset($balancenational) && !empty($balancenational) && $balancenational != 'error code: 1020') {
+         
+         
+                     $json = json_decode($balancenational, true);
+                     //  return $json['balance'];
+         
+         
+                     if ($json['balance'] >0) {
+         
+                         $curl2 = curl_init();
+         
+                         curl_setopt_array($curl2, array(
+                             CURLOPT_URL => "https://taxes.like4app.com/online/categories",
+                             CURLOPT_RETURNTRANSFER => true,
+                             CURLOPT_ENCODING => "",
+                             CURLOPT_MAXREDIRS => 10,
+                             CURLOPT_TIMEOUT => 0,
+                             CURLOPT_FOLLOWLOCATION => true,
+                             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                             CURLOPT_CUSTOMREQUEST => "POST",
+                             CURLOPT_POSTFIELDS => array(
+                                 'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                                 'email' => 'sales@bn-plus.ly',
+                                 'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                                 'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                                 'langId' => '1'
+                             ),
+         
+                         ));
+         
+                         $companiesnational = curl_exec($curl2);
+         
+                         $national = json_decode($companiesnational, true);
+                         $compsave = new Company;
+                         $allcompanyid = array();
+                         foreach ($national['data'] as $company) {
+         
+                             array_push($allcompanyid, $company['id']);
+                         }
+         
+                       //  return count($allcompanyid);
+                         for ($i = 0; $i < count($allcompanyid); $i++) {
+         
+                             if (count(Company::where('id', $allcompanyid[$i])->get()) == 0) {
+         
+         
+         
+                                 $compsave->id = $allcompanyid[$i];
+                                 $compsave->company_image = $company['amazonImage'];
+                                 $compsave->name = $company['categoryName'];
+                                 $compsave->kind = 'national';
+                                 $compsave->api = 1;
+         
+                                 $compsave->save();
+                             }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+                             /////////////////cards 
+         
+                             $curl3 = curl_init();
+         
+                             curl_setopt_array($curl3, array(
+                                 CURLOPT_URL => "https://taxes.like4app.com/online/products",
+                                 CURLOPT_RETURNTRANSFER => true,
+                                 CURLOPT_ENCODING => "",
+                                 CURLOPT_MAXREDIRS => 10,
+                                 CURLOPT_TIMEOUT => 0,
+                                 CURLOPT_FOLLOWLOCATION => true,
+                                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                                 CURLOPT_CUSTOMREQUEST => "POST",
+                                 CURLOPT_POSTFIELDS => array(
+                                     'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                                     'email' => 'sales@bn-plus.ly',
+                                     'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                                     'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                                     'langId' => '1',
+                                     'ids[]' => $allcompanyid[$i]
+                                 ),
+         
+                             ));
+         
+                             $cardsnational = curl_exec($curl3);
+         
+                             $allcards = json_decode($cardsnational, true);
+         
+                          
+                             $cardsave = new Cards;
+                             $allcardsid = array();
+                             if (count($allcards) > 0) {
+                                 if(isset($allcards['data'] ) ){
+                                 foreach ($allcards['data'] as $card) {
+         
+                                     array_push($allcardsid, $card['productId']);
+                                 }
+                             }}
+                           //  return $allcardsid ;
+                             for ($j = 0; $j < count($allcardsid); $j++) {
+         
+                                 if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
+         
+                                     if (count(Company::where('id', $card['categoryId'])->get()) != 0) {
+         
+                                         // return count(Company::where('id', $cards['categoryId'])->get());
+                                         $cardsave->id = $allcardsid[$j];
+                                         $cardsave->company_id = $card['categoryId'];
+                                         $cardsave->card_name = $card['productName'];
+                                         $cardsave->card_price = $card['productPrice'];
+                                         $cardsave->card_code = $card['productName'];
+                                         $cardsave->card_image = $card['productImage'];
+                                         $cardsave->nationalcompany = 'national';
+                                         $cardsave->api = 1;
+         
+                                         $cardsave->save();
+                                     } else {
+                                         // return count(Company::where('id', $cards['categoryId'])->get());
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                 }
 
-                        $nationalApicompany = Http::withHeaders([
-                            'Content-Type' => 'application/x-www-form-urlencoded'
-                        ])->post('https://taxes.like4app.com/online/categories', [
-                            'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-                            'email' => 'sales@bn-plus.ly',
-                            'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-                            'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-                            'langId' => 1,
-                        ]);
-
-                        if (isset($nationalApicompany['data']) && !empty($nationalApicompany['data']) && $nationalApicompany!='error code: 1020') {
-                            foreach($nationalApicompany['data'] as $company){
-                                $company_data['id']=$company['id'];
-                                $company_data['name']=$company['categoryName'];
-                                $company_data['company_image']=$company['amazonImage'];
-                                $company_data['api']=1;
-                                $company_data['kind']='national';
-                                
-                                Company::create($company_data);
-                            }
-
-                        }
-
-
-
-                        $nationalApicrds = Http::withHeaders([
-                            'Content-Type' => 'application/x-www-form-urlencoded'
-                        ])->post('https://taxes.like4app.com/online/products', [
-                            'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-                            'email' => 'sales@bn-plus.ly',
-                            'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-                            'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-                            'langId' => 1,
-    
-                        ]);
-
-
-
-                        if (isset($nationalApicrds['data']) && !empty($nationalApicrds['data']) && $nationalApicrds!='error code: 1020') {
-                            foreach($nationalApicrds['data'] as $card){
-                                $card_data['id']=$card['productId'];
-                                $card_data['company_id']=$card['categoryId'];
-                                $card_data['card_name']=$card['productName'];
-                                $card_data['nationalcompany']='national';
-                                $card_data['card_price']=$card['productPrice'];
-                                $card_data['card_code']=$card['productName'];
-                                $card_data['card_image']=$card['productImage'];
-                                $card_data['api']=1;
-                               
-                                
-                                Cards::create($card_data);
-                            }
-
-                        }
-
-
-
-                    }
+                 
                     $this->info('National Cummand Run successfully!.');
-                }
+                
     }
 }
