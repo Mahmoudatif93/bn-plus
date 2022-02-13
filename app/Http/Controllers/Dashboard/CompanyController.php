@@ -136,34 +136,34 @@ class CompanyController extends Controller
 
                     $cards = json_decode($cardsnational, true);
 
-                   return count($cards['data']) ;
+                    //return count($cards['data']) ;
                     $cardsave = new Cards;
                     $allcardsid = array();
+                    if (count($cards['data']) > 0) {
+                        foreach ($cards['data'] as $card) {
 
-                    foreach ($cards['data'] as $card) {
-
-                        array_push($allcardsid, $card['productId']);
+                            array_push($allcardsid, $card['productId']);
+                        }
                     }
-                    return $allcardsid;
                     for ($j = 0; $j < count($allcardsid); $j++) {
 
                         if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
 
                             if (count(Company::where('id', $card['categoryId'])->get()) != 0) {
 
-                               // return count(Company::where('id', $cards['categoryId'])->get());
-                            $cardsave->id = $allcardsid[$j];
-                            $cardsave->company_id = $card['categoryId'];
-                            $cardsave->card_name = $card['productName'];
-                            $cardsave->card_price = $card['productPrice'];
-                            $cardsave->card_code = $card['productName'];
-                            $cardsave->card_image = $card['productImage'];
-                            $cardsave->nationalcompany = 'national';
-                            $cardsave->api = 1;
+                                // return count(Company::where('id', $cards['categoryId'])->get());
+                                $cardsave->id = $allcardsid[$j];
+                                $cardsave->company_id = $card['categoryId'];
+                                $cardsave->card_name = $card['productName'];
+                                $cardsave->card_price = $card['productPrice'];
+                                $cardsave->card_code = $card['productName'];
+                                $cardsave->card_image = $card['productImage'];
+                                $cardsave->nationalcompany = 'national';
+                                $cardsave->api = 1;
 
-                            $cardsave->save();
-                            }else{
-                               // return count(Company::where('id', $cards['categoryId'])->get());
+                                $cardsave->save();
+                            } else {
+                                // return count(Company::where('id', $cards['categoryId'])->get());
                             }
                         }
                     }
