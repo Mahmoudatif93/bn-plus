@@ -143,14 +143,14 @@ class CompanyController extends Controller
 
                         array_push($allcardsid, $cards['productId']);
                     }
-                    for ($i = 0; $i < count($allcardsid); $i++) {
+                    for ($j = 0; $j < count($allcardsid); $j++) {
 
-                        if (count(Cards::where('id', $allcardsid[$i])->get()) == 0) {
+                        if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
 
                             if (count(Company::where('id', $cards['categoryId'])->get()) != 0) {
 
                                // return count(Company::where('id', $cards['categoryId'])->get());
-                            $cardsave->id = $allcardsid[$i];
+                            $cardsave->id = $allcardsid[$j];
                             $cardsave->company_id = $cards['categoryId'];
                             $cardsave->card_name = $cards['productName'];
                             $cardsave->card_price = $cards['productPrice'];
