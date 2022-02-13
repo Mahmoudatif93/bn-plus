@@ -87,14 +87,23 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
         $national = json_decode($companiesnational, true);
 
        // return $national['data'];
+       $compsave = new Company;
         foreach($national['data'] as $company){
             
-            $request_data['id']=$company['id'] ;
+            $compsave->id = $company['id'];
+            $compsave->company_image = $company['amazonImage'];
+            $compsave->name = $company['categoryName'];
+            $compsave->kind = 'national' ;
+            $compsave->api = 1 ;
+ 
+        $compsave->save();
+
+            /*$request_data['id']=$company['id'] ;
         $request_data['company_image']=$company['amazonImage'] ;
         $request_data['name']=$company['categoryName'] ;
         $request_data['kind']='national' ;
         $request_data['api']=1 ;
-        Company::create($request_data);
+        Company::create($request_data);*/
              }
 
         return $companiesnational;
