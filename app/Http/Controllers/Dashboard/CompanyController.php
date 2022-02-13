@@ -136,7 +136,7 @@ class CompanyController extends Controller
 
                     $cards = json_decode($cardsnational, true);
 
-                    return $cardsnational;
+                   // return $cardsnational;
                     $cardsave = new Cards;
                     $allcardsid = array();
                     foreach ($cards['data'] as $cards) {
@@ -149,7 +149,7 @@ class CompanyController extends Controller
 
                             if (count(Company::where('id', $cards['categoryId'])->get()) != 0) {
 
-
+                                return count(Company::where('id', $cards['categoryId'])->get());
                             $cardsave->id = $allcardsid[$i];
                             $cardsave->company_id = $cards['categoryId'];
                             $cardsave->card_name = $cards['productName'];
@@ -160,6 +160,8 @@ class CompanyController extends Controller
                             $cardsave->api = 1;
 
                             $cardsave->save();
+                            }else{
+                                return count(Company::where('id', $cards['categoryId'])->get());
                             }
                         }
                     }
