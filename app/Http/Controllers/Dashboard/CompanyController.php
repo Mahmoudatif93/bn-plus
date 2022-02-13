@@ -94,28 +94,27 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
             array_push($allcompanyid, $company['id']);
 
-
-           // return $company['id'];
-            /*if(count(Company::where('id',$company['id'])->get() ) < 0){
-            $compsave->id = $company['id'];
-            $compsave->company_image = $company['amazonImage'];
-            $compsave->name = $company['categoryName'];
-            $compsave->kind = 'national' ;
-            $compsave->api = 1 ;
- 
-             $compsave->save();*/
         }
         return $allcompanyid;
+for($i=0;$i< count($allcompanyid);$i++){
 
-            /*$request_data['id']=$company['id'] ;
-        $request_data['company_image']=$company['amazonImage'] ;
-        $request_data['name']=$company['categoryName'] ;
-        $request_data['kind']='national' ;
-        $request_data['api']=1 ;
-        Company::create($request_data);*/
+    if(count(Company::where('id',$company['id'][$i])->get() ) < 0){
+        $compsave->id = $company['id'][$i];
+        $compsave->company_image = $company['amazonImage'];
+        $compsave->name = $company['categoryName'];
+        $compsave->kind = 'national' ;
+        $compsave->api = 1 ;
+
+         $compsave->save();
+        }
+
+
+
+}
+            
              }
 
-        return $companiesnational;
+      //  return $companiesnational;
 
 
     
