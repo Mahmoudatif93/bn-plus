@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="form-group">
-                            <img src="{{ asset('uploads/'.$category->card_image) }}" style="width: 100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{ $category->card_image }}" style="width: 100px" class="img-thumbnail image-preview" alt="">
 
                         </div>
                         

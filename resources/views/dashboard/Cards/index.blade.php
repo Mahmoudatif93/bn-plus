@@ -113,7 +113,7 @@
 
                                     @endif
                                     </td>--}}
-                                    <td><img src="{{ asset('uploads/'.$category->card_image) }}" style="width: 100px"  class="img-thumbnail" alt=""></td>
+                                    <td><img src="{{ $category->card_image }}" style="width: 100px"  class="img-thumbnail" alt=""></td>
 
 
 

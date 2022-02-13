@@ -115,7 +115,7 @@ class CardsController extends Controller
                         })
                         ->save(public_path('uploads/cards/' . $request->card_image->hashName()));
         
-                    $request_data['card_image'] = 'cards/'.$request->card_image->hashName();
+                    $request_data['card_image'] = 'https://bn-plus.ly/BNplus/public/uploads/cards/'.$request->card_image->hashName();
         
                 }//end of if
                // print_r($request_data);
@@ -172,7 +172,7 @@ class CardsController extends Controller
                     })
                     ->save(public_path('uploads/cards/' . $request->card_image->hashName()));
     
-             $request_data['card_image'] = 'cards/'.$request->card_image->hashName();
+             $request_data['card_image'] = 'https://bn-plus.ly/BNplus/public/uploads/cards/'.$request->card_image->hashName();
     
             }//end of if
     
