@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Company;
+use App\Cards;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
@@ -16,20 +17,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
 
-        /*  $balancenational = Http::withHeaders([
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'Accept' => 'application/json',
-        
-        ])->post('https://taxes.like4app.com/online/check_balance/', [
-            'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-            'email' => 'sales@bn-plus.ly',
-            'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-            'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-            'langId' => 1,
-        ]);
-
-
-return $balancenational;*/
+       
 
         $curl = curl_init();
 
@@ -87,17 +75,12 @@ return $balancenational;*/
                 $companiesnational = curl_exec($curl2);
 
                 $national = json_decode($companiesnational, true);
-
-                // return $national['data'];
                 $compsave = new Company;
                 $allcompanyid = array();
-
                 foreach ($national['data'] as $company) {
 
                     array_push($allcompanyid, $company['id']);
                 }
-return $allcompanyid;
-
                 for ($i = 0; $i < count($allcompanyid); $i++) {
 
                     if (count(Company::where('id', $allcompanyid[$i])->get()) == 0) {
@@ -112,11 +95,76 @@ return $allcompanyid;
 
                         $compsave->save();
                     }
-                  //  return count(Company::where('id', $allcompanyid[$i])->get());
+                   
                 }
+
+
+
+
+
+
+
+
+
+                /////////////////cards 
+
+                $curl3 = curl_init();
+
+                curl_setopt_array($curl3, array(
+                    CURLOPT_URL => "https://taxes.like4app.com/online/products",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => array(
+                        'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                        'email' => 'sales@bn-plus.ly',
+                        'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                        'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                        'langId' => '1'
+                    ),
+
+                ));
+
+                $cardsnational = curl_exec($curl2);
+
+                $cards = json_decode($cardsnational, true);
+                $cardsave = new Cards;
+                $allcardsid = array();
+                foreach ($cards['data'] as $cards) {
+
+                    array_push($allcardsid, $cards['productId']);
+                }
+                for ($i = 0; $i < count($allcardsid); $i++) {
+
+                    if (count(Cards::where('id', $allcardsid[$i])->get()) == 0) {
+
+
+
+                        $cardsave->id = $allcardsid[$i];
+                        $cardsave->company_id = $cards['categoryId'];
+                        $cardsave->card_name = $cards['productName'];
+                        $cardsave->card_price = $cards['productPrice'];
+                        $cardsave->card_code = $cards['productName'];
+                        $cardsave->card_image = $cards['productImage'];
+                        $cardsave->nationalcompany = 'national';
+                        $cardsave->api = 1;
+
+                        $cardsave->save();
+                    }
+                   
+                }
+
+
+
+
+
             }
 
-            //  return $companiesnational;
+       
 
 
 
