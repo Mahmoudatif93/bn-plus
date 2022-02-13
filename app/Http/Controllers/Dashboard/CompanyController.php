@@ -146,7 +146,7 @@ class CompanyController extends Controller
                             array_push($allcardsid, $card['productId']);
                         }
                     }}
-                    return $allcardsid ;
+                  //  return $allcardsid ;
                     for ($j = 0; $j < count($allcardsid); $j++) {
 
                         if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
