@@ -17,7 +17,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
 
-       
+
 
         $curl = curl_init();
 
@@ -95,8 +95,6 @@ class CompanyController extends Controller
 
                         $compsave->save();
                     }
-                   
-                }
 
 
 
@@ -106,72 +104,63 @@ class CompanyController extends Controller
 
 
 
-                /////////////////cards 
-
-                $curl3 = curl_init();
-
-                curl_setopt_array($curl3, array(
-                    CURLOPT_URL => "https://taxes.like4app.com/online/products",
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => "",
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => "POST",
-                    CURLOPT_POSTFIELDS => array(
-                        'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
-                        'email' => 'sales@bn-plus.ly',
-                        'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
-                        'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
-                        'langId' => '1',
-                        'ids[]'=>$allcompanyid
-                    ),
-
-                ));
-
-                $cardsnational = curl_exec($curl3);
-
-                $cards = json_decode($cardsnational, true);
-
-                return $cardsnational;
-                $cardsave = new Cards;
-                $allcardsid = array();
-                foreach ($cards['data'] as $cards) {
-
-                    array_push($allcardsid, $cards['productId']);
-                }
-                for ($i = 0; $i < count($allcardsid); $i++) {
-
-                    if (count(Cards::where('id', $allcardsid[$i])->get()) == 0) {
 
 
+                    /////////////////cards 
 
-                        $cardsave->id = $allcardsid[$i];
-                        $cardsave->company_id = $cards['categoryId'];
-                        $cardsave->card_name = $cards['productName'];
-                        $cardsave->card_price = $cards['productPrice'];
-                        $cardsave->card_code = $cards['productName'];
-                        $cardsave->card_image = $cards['productImage'];
-                        $cardsave->nationalcompany = 'national';
-                        $cardsave->api = 1;
+                    $curl3 = curl_init();
 
-                        $cardsave->save();
+                    curl_setopt_array($curl3, array(
+                        CURLOPT_URL => "https://taxes.like4app.com/online/products",
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => "",
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => "POST",
+                        CURLOPT_POSTFIELDS => array(
+                            'deviceId' => '4d2ec47930a1fe0706836fdd1157a8c320dfc962aa6d0b0df2f4dda40a27b2ba',
+                            'email' => 'sales@bn-plus.ly',
+                            'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
+                            'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
+                            'langId' => '1',
+                            'ids[]' => $allcompanyid[$i]
+                        ),
+
+                    ));
+
+                    $cardsnational = curl_exec($curl3);
+
+                    $cards = json_decode($cardsnational, true);
+
+                    return $cardsnational;
+                    $cardsave = new Cards;
+                    $allcardsid = array();
+                    foreach ($cards['data'] as $cards) {
+
+                        array_push($allcardsid, $cards['productId']);
                     }
-                   
+                    for ($i = 0; $i < count($allcardsid); $i++) {
+
+                        if (count(Cards::where('id', $allcardsid[$i])->get()) == 0) {
+
+
+
+                            $cardsave->id = $allcardsid[$i];
+                            $cardsave->company_id = $cards['categoryId'];
+                            $cardsave->card_name = $cards['productName'];
+                            $cardsave->card_price = $cards['productPrice'];
+                            $cardsave->card_code = $cards['productName'];
+                            $cardsave->card_image = $cards['productImage'];
+                            $cardsave->nationalcompany = 'national';
+                            $cardsave->api = 1;
+
+                            $cardsave->save();
+                        }
+                    }
                 }
-
-
-
-
-
             }
-
-       
-
-
-
-
         }
 
 
