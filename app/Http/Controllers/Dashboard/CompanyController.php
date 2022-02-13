@@ -58,7 +58,7 @@ $balancenational = curl_exec($curl);
 //curl_close($curl);
 
 if (isset($balancenational) && !empty($balancenational) && $balancenational!='error code: 1020') {
-    return $balancenational;
+    return $balancenational['response'];
   /*  if ($balancenational->balance > 0) {
         return $balancenational->balance ;
     }*/
