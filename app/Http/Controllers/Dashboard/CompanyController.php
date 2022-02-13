@@ -88,7 +88,7 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
        // return $national['data'];
         foreach($national['data'] as $company){
-            return $company['data'];
+            return $company['categoryName'];
         }
         $request_data['company_image']=$national['amazonImage'] ;
         $request_data['name']=$national['categoryName'] ;
