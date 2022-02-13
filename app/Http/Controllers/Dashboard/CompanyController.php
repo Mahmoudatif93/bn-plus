@@ -81,6 +81,8 @@ class CompanyController extends Controller
 
                     array_push($allcompanyid, $company['id']);
                 }
+
+                return $allcompanyid;
                 for ($i = 0; $i < count($allcompanyid); $i++) {
 
                     if (count(Company::where('id', $allcompanyid[$i])->get()) == 0) {
