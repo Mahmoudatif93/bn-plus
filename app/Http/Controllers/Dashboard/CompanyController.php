@@ -96,7 +96,7 @@ return $balancenational;*/
 
                     array_push($allcompanyid, $company['id']);
                 }
-
+return $allcompanyid;
 
                 for ($i = 0; $i < count($allcompanyid); $i++) {
 
