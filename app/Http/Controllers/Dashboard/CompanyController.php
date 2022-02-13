@@ -112,7 +112,7 @@ return $balancenational;*/
 
                         $compsave->save();
                     }
-                    return count(Company::where('id', $allcompanyid[$i])->get());
+                  //  return count(Company::where('id', $allcompanyid[$i])->get());
                 }
             }
 
