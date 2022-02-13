@@ -95,7 +95,7 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
             array_push($allcompanyid, $company['id']);
 
         }
-        return $allcompanyid;
+      //  return $allcompanyid;
 for($i=0;$i< count($allcompanyid);$i++){
 
 
