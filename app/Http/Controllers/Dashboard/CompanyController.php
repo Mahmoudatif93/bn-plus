@@ -139,7 +139,7 @@ class CompanyController extends Controller
                     //return count($cards['data']) ;
                     $cardsave = new Cards;
                     $allcardsid = array();
-                    if (count($cards['data']) > 0) {
+                    if (count($cards) > 0) {
                         foreach ($cards['data'] as $card) {
 
                             array_push($allcardsid, $card['productId']);
