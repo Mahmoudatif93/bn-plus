@@ -136,26 +136,26 @@ class CompanyController extends Controller
 
                     $cards = json_decode($cardsnational, true);
 
-                   return $cardsnational;
+                 //  return $cardsnational;
                     $cardsave = new Cards;
                     $allcardsid = array();
-                    foreach ($cards['data'] as $cards) {
+                    foreach ($cards['data'] as $card) {
 
-                        array_push($allcardsid, $cards['productId']);
+                        array_push($allcardsid, $card['productId']);
                     }
                     for ($j = 0; $j < count($allcardsid); $j++) {
 
                         if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
 
-                            if (count(Company::where('id', $cards['categoryId'])->get()) != 0) {
+                            if (count(Company::where('id', $card['categoryId'])->get()) != 0) {
 
                                // return count(Company::where('id', $cards['categoryId'])->get());
                             $cardsave->id = $allcardsid[$j];
-                            $cardsave->company_id = $cards['categoryId'];
-                            $cardsave->card_name = $cards['productName'];
-                            $cardsave->card_price = $cards['productPrice'];
-                            $cardsave->card_code = $cards['productName'];
-                            $cardsave->card_image = $cards['productImage'];
+                            $cardsave->company_id = $card['categoryId'];
+                            $cardsave->card_name = $card['productName'];
+                            $cardsave->card_price = $card['productPrice'];
+                            $cardsave->card_code = $card['productName'];
+                            $cardsave->card_image = $card['productImage'];
                             $cardsave->nationalcompany = 'national';
                             $cardsave->api = 1;
 
