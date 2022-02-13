@@ -92,14 +92,14 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
         foreach($national['data'] as $company){
            // return $company['id'];
-            if(count(Company::where('id',$company['id'])->first() )> 0){
+            if(count(Company::where('id',$company['id'])->first() ) < 0){
             $compsave->id = $company['id'];
             $compsave->company_image = $company['amazonImage'];
             $compsave->name = $company['categoryName'];
             $compsave->kind = 'national' ;
             $compsave->api = 1 ;
  
-        $compsave->save();
+             $compsave->save();
         }
 
 
