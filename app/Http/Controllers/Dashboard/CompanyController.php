@@ -136,7 +136,7 @@ class CompanyController extends Controller
 
                     $allcards = json_decode($cardsnational, true);
 
-                  return $allcards['data'] ;
+                  return $allcards['data']['productId'] ;
                     $cardsave = new Cards;
                     $allcardsid = array();
                     if (count($allcards) > 0) {
