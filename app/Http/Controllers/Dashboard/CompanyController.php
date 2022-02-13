@@ -118,7 +118,7 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
         return $companiesnational;
 
 
-    }
+    
 
 }
  
