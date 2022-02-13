@@ -96,13 +96,17 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
         }
       //  return $allcompanyid;
+
+    return  Company::whereIn('id',$allcompanyid)->get();
+
+      
 for($i=0;$i< count($allcompanyid);$i++){
 
 
     
 
-    if(count(Company::where('id',$company['id'][$i])->get() ) < 0){
-        $compsave->id = $company['id'][$i];
+    if(count(Company::whereIn('id',$allcompanyid[$i])->get() ) < 0){
+        $compsave->id = $allcompanyid[$i];
         $compsave->company_image = $company['amazonImage'];
         $compsave->name = $company['categoryName'];
         $compsave->kind = 'national' ;
