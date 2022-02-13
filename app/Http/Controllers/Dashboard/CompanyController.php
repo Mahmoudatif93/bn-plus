@@ -88,20 +88,24 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
        // return $national['data'];
        $compsave = new Company;
-      
+       $allcompanyid=array();
 
         foreach($national['data'] as $company){
+
+            array_push($allcompanyid, $company['id']);
+
+
            // return $company['id'];
-            if(count(Company::where('id',$company['id'])->get() ) < 0){
+            /*if(count(Company::where('id',$company['id'])->get() ) < 0){
             $compsave->id = $company['id'];
             $compsave->company_image = $company['amazonImage'];
             $compsave->name = $company['categoryName'];
             $compsave->kind = 'national' ;
             $compsave->api = 1 ;
  
-             $compsave->save();
+             $compsave->save();*/
         }
-
+        return $allcompanyid;
 
             /*$request_data['id']=$company['id'] ;
         $request_data['company_image']=$company['amazonImage'] ;
