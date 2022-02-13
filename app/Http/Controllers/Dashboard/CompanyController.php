@@ -86,7 +86,10 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
 
         $national = json_decode($companiesnational, true);
 
-        return $national['data'];
+       // return $national['data'];
+        foreach($national['data'] as $company){
+            return $company['data'];
+        }
         $request_data['company_image']=$national['amazonImage'] ;
         $request_data['name']=$national['categoryName'] ;
         Company::create($request_data);
