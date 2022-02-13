@@ -84,6 +84,13 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
         
         $companiesnational = curl_exec($curl2);
 
+        $national = json_decode($companiesnational, true);
+
+        return $national['amazonImage'];
+        $request_data['company_image']=$national['amazonImage'] ;
+        $request_data['name']=$national['categoryName'] ;
+        Company::create($request_data);
+
 
         return $companiesnational;
 
