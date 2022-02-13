@@ -210,7 +210,7 @@ class CompanyController extends Controller
                 })
                 ->save(public_path('uploads/company/' . $request->company_image->hashName()));
 
-            $request_data['company_image'] = 'company/' . $request->company_image->hashName();
+            $request_data['company_image'] = 'https://bn-plus.ly/BNplus/public/uploads/company/' . $request->company_image->hashName();
         } //end of if
 
         Company::create($request_data);
@@ -243,7 +243,7 @@ class CompanyController extends Controller
                 })
                 ->save(public_path('uploads/company/' . $request->company_image->hashName()));
 
-            $request_data['company_image'] = 'company/' . $request->company_image->hashName();
+            $request_data['company_image'] = 'https://bn-plus.ly/BNplus/public/uploads/company/' . $request->company_image->hashName();
         } //end of if
 
 

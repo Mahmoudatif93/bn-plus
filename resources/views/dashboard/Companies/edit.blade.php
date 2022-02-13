@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <img src="{{ asset('uploads/'.$category->company_image) }}" style="width: 100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{ 'https://bn-plus.ly/BNplus/public/uploads/'.$category->company_image}}" style="width: 100px" class="img-thumbnail image-preview" alt="">
 
                         </div>
                         
