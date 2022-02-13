@@ -89,7 +89,7 @@ if (isset($balancenational) && !empty($balancenational) && $balancenational!='er
        // return $national['data'];
        $compsave = new Company;
         foreach($national['data'] as $company){
-            
+            return $company['id'];
             $compsave->id = $company['id'];
             $compsave->company_image = $company['amazonImage'];
             $compsave->name = $company['categoryName'];
