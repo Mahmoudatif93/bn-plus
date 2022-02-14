@@ -72,7 +72,7 @@ class CompanyController extends Controller
                 ));
 
                 $companiesnational = curl_exec($curl2);
-//return($companiesnational);
+return($companiesnational);
                 $national = json_decode($companiesnational, true);
                 $compsave = new Company;
                 $allcompanyid = array();
