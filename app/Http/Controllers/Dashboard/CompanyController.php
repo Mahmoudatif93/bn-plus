@@ -72,7 +72,7 @@ class CompanyController extends Controller
                 ));
 
                 $companiesnational = curl_exec($curl2);
-return($companiesnational);
+//return($companiesnational);
                 $national = json_decode($companiesnational, true);
                 $compsave = new Company;
                 $allcompanyid = array();
@@ -89,8 +89,8 @@ return($companiesnational);
 
 
                         $compsave->id = $allcompanyid[$i];
-                        $compsave->company_image = $company['amazonImage'];
-                        $compsave->name = $company['categoryName'];
+                        $compsave->company_image = $company['amazonImage'][$i];
+                        $compsave->name = $company['categoryName'][$i];
                         $compsave->kind = 'national';
                         $compsave->api = 1;
 
