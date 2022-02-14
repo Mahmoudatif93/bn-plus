@@ -72,15 +72,25 @@ class CompanyController extends Controller
                 ));
 
                 $companiesnational = curl_exec($curl2);
-return($companiesnational);
+
                 $national = json_decode($companiesnational, true);
                 $compsave = new Company;
                 $allcompanyid = array();
                 foreach ($national['data'] as $company) {
 
+
+                    $compsave->id = $company['id'];
+                    $compsave->company_image = $company['amazonImage'];
+                    $compsave->name = $company['categoryName'];
+                    $compsave->kind = 'national';
+                    $compsave->api = 1;
+
+                    $compsave->save();
+
+
                     array_push($allcompanyid, $company['id']);
                 }
-
+                return($companiesnational);
               //  return count($allcompanyid);
                 for ($i = 0; $i < count($allcompanyid); $i++) {
 
