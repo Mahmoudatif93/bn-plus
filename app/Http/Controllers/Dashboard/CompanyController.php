@@ -141,7 +141,7 @@ class CompanyController extends Controller
                     if (count($allcards) > 0) {
                         if (isset($allcards['data'])) {
                             foreach ($allcards['data'] as $card) {
-                                if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
+                                if (count(Cards::where('id', $card['productId'])->get()) == 0) {
 
                                     if (count(Company::where('id', $card['categoryId'])->get()) != 0) {
 
