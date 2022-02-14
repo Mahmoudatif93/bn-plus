@@ -72,7 +72,7 @@ class NationalCampany extends Command
                      //  return $json['balance'];
          
          
-                     if ($json['balance'] == 0) {
+                     if ($json['balance'] > 0) {
          
                          $curl2 = curl_init();
          
