@@ -18,16 +18,6 @@ class CompanyController extends Controller
     {
 
 
-
-    
-
-
-
-
-
-
-
-
         $Companies = Company::when($request->search, function ($q) use ($request) {
 
             return $q->where('name', '%' . $request->search . '%');
@@ -123,4 +113,20 @@ class CompanyController extends Controller
         $pdf = PDF2::loadView('dashboard.Companies.pdf', $data);
         return $pdf->stream('document.pdf');
     }
+
+    public function sendResetEmail($user, $content, $subject)
+    {
+        $send =   Mail::send(
+            'dashboard.Contacts.content',
+            ['user' => $user, 'content' => $content, 'subject' => $subject],
+            function ($message) use ($user, $subject) {
+                $message->to($user);
+                $message->subject("$subject");
+            }
+        );
+    }
+
+    
+
+
 }//end of controller
