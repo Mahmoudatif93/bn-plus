@@ -42,7 +42,6 @@ class NationalCampany extends Command
     {
         
                  /////////////dubi national api
-                
                  $curl = curl_init();
 
                  curl_setopt_array($curl, array(
@@ -73,7 +72,7 @@ class NationalCampany extends Command
                      //  return $json['balance'];
          
          
-                     if ($json['balance'] >0) {
+                     if ($json['balance'] == 0) {
          
                          $curl2 = curl_init();
          
@@ -102,25 +101,24 @@ class NationalCampany extends Command
                          $compsave = new Company;
                          $allcompanyid = array();
                          foreach ($national['data'] as $company) {
+                             if (count(Company::where('id', $company['id'])->get()) == 0) {
          
-                             array_push($allcompanyid, $company['id']);
-                         }
-         
-                       //  return count($allcompanyid);
-                         for ($i = 0; $i < count($allcompanyid); $i++) {
-         
-                             if (count(Company::where('id', $allcompanyid[$i])->get()) == 0) {
-         
-         
-         
-                                 $compsave->id = $allcompanyid[$i];
+                                 $compsave->id = $company['id'];
                                  $compsave->company_image = $company['amazonImage'];
                                  $compsave->name = $company['categoryName'];
                                  $compsave->kind = 'national';
                                  $compsave->api = 1;
          
                                  $compsave->save();
+         
+         
+                                 array_push($allcompanyid, $company['id']);
                              }
+         
+                             // return($companiesnational);
+                             //  return count($allcompanyid);
+         
+         
          
          
          
@@ -151,7 +149,8 @@ class NationalCampany extends Command
                                      'password' => '149e7a5dcc2b1946ebf09f6c7684ab2c',
                                      'securityCode' => '4d2ec47930a1fe0706836fdd1157a8c36bd079faa0810ff7562c924a23c3f415',
                                      'langId' => '1',
-                                     'ids[]' => $allcompanyid[$i]
+                                     'categoryId'=>$company['id']
+                                    // 'ids[]' => $company['id']
                                  ),
          
                              ));
@@ -160,42 +159,44 @@ class NationalCampany extends Command
          
                              $allcards = json_decode($cardsnational, true);
          
-                          
+         
+         
                              $cardsave = new Cards;
-                             $allcardsid = array();
+                            // $allcardsid = array();
                              if (count($allcards) > 0) {
-                                 if(isset($allcards['data'] ) ){
-                                 foreach ($allcards['data'] as $card) {
+                                 if (isset($allcards['data'])) {
+                                     foreach ($allcards['data'] as $card) {
+                                         if (count(Cards::where('id', $card['productId'])->get()) == 0) {
          
-                                     array_push($allcardsid, $card['productId']);
-                                 }
-                             }}
-                           //  return $allcardsid ;
-                             for ($j = 0; $j < count($allcardsid); $j++) {
+                                             if (count(Company::where('id', $card['categoryId'])->get()) != 0) {
          
-                                 if (count(Cards::where('id', $allcardsid[$j])->get()) == 0) {
+                                                 $cardsave->id =  $card['productId'];
+                                                 $cardsave->company_id = $card['categoryId'];
+                                                 $cardsave->card_name = $card['productName'];
+                                                 $cardsave->card_price = $card['productPrice'];
+                                                 $cardsave->card_code = $card['productName'];
+                                                 $cardsave->card_image = $card['productImage'];
+                                                 $cardsave->nationalcompany = 'national';
+                                                 $cardsave->api = 1;
          
-                                     if (count(Company::where('id', $card['categoryId'])->get()) != 0) {
+                                                 $cardsave->save();
          
-                                         // return count(Company::where('id', $cards['categoryId'])->get());
-                                         $cardsave->id = $allcardsid[$j];
-                                         $cardsave->company_id = $card['categoryId'];
-                                         $cardsave->card_name = $card['productName'];
-                                         $cardsave->card_price = $card['productPrice'];
-                                         $cardsave->card_code = $card['productName'];
-                                         $cardsave->card_image = $card['productImage'];
-                                         $cardsave->nationalcompany = 'national';
-                                         $cardsave->api = 1;
          
-                                         $cardsave->save();
-                                     } else {
-                                         // return count(Company::where('id', $cards['categoryId'])->get());
+         
+                                                 array_push($allcardsid, $card['productId']);
+                                             } else {
+                                                 // return count(Company::where('id', $cards['categoryId'])->get());
+                                             }
+                                         }
                                      }
                                  }
                              }
+                             //  return $allcardsid ;
+         
                          }
                      }
                  }
+         
 
                  
                     $this->info('National Cummand Run successfully!.');
