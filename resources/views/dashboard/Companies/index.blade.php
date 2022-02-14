@@ -79,7 +79,7 @@
 
                                     </td>
                                     
-                                    <td><img src="{{$category->company_image}}" style="width: 100px"  class="img-thumbnail" alt="">
+                                    <td>
                                 
                                     <Ellipse Height="60" Width="60" >
   <Ellipse.Fill>
