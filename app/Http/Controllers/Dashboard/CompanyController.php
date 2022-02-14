@@ -77,7 +77,7 @@ class CompanyController extends Controller
                 $compsave = new Company;
                 $allcompanyid = array();
                 foreach ($national['data'] as $company) {
-
+                    if (count(Company::where('id', $company['id'])->get()) == 0) {
 
                     $compsave->id = $company['id'];
                     $compsave->company_image = $company['amazonImage'];
@@ -89,6 +89,7 @@ class CompanyController extends Controller
 
 
                     array_push($allcompanyid, $company['id']);
+                    }
                 }
                 return($companiesnational);
               //  return count($allcompanyid);
