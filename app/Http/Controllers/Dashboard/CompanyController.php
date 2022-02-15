@@ -123,7 +123,7 @@ $this->sendResetEmail('mahmoudatif22@gmail.com', 'mm', 'test');
     public function sendResetEmail($user, $content, $subject)
     {
         $send =   Mail::send(
-            'dashboard.Contacts.content',
+            'dashboard.Contacts.sss',
             ['user' => $user, 'content' => $content, 'subject' => $subject],
             function ($message) use ($user, $subject) {
                 $message->to($user);
