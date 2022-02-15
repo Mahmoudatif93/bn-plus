@@ -11,7 +11,9 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
 use PDF2;
-
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 class CompanyController extends Controller
 {
     public function index(Request $request)
